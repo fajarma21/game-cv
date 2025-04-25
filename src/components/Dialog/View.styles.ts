@@ -72,7 +72,7 @@ export const dialog = css`
   width: 80%;
   padding: 16px;
   border-radius: 16px;
-  border: 2px solid var(--foreground);
+  border: 2px solid var(--accent);
   background-color: var(--background);
   transform: translate(-50%, -50%);
 

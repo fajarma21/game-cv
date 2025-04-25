@@ -1,15 +1,19 @@
 import { SPEED } from "../index.constants";
 import { PlayerParams } from "./types";
 
-const player = ({ k, top, handleAddItem, handleRemoveItem }: PlayerParams) => {
-  const player = k.add([
+const player = ({
+  k,
+  game,
+  parent,
+  handleAddItem,
+  handleRemoveItem,
+}: PlayerParams) => {
+  const player = game.add([
     k.sprite("player", { anim: "down-idle" }),
     k.area({ shape: new k.Rect(k.vec2(0, 0), 40, 20) }),
     k.body(),
     k.anchor("bot"),
-    k.pos(k.width() / 2, top.height / 2 + 150),
-    k.scale(0.8),
-    k.z(4),
+    k.pos(parent.width / 2, parent.height / 2),
     "player",
     {
       speed: SPEED,
@@ -18,7 +22,7 @@ const player = ({ k, top, handleAddItem, handleRemoveItem }: PlayerParams) => {
   ]);
 
   // shadow
-  k.add([
+  parent.add([
     k.pos(),
     k.follow(player, k.vec2(0, -10)),
     k.z(2),

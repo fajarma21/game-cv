@@ -1,8 +1,12 @@
 import { KAPLAYCtx, GameObj } from "kaplay";
 
-export interface PlayerParams {
+export interface BasicParams {
   k: KAPLAYCtx;
-  top: GameObj;
+  parent: GameObj;
+}
+
+export interface PlayerParams extends BasicParams {
+  game: GameObj;
   handleAddItem: (value: GameObj) => void;
   handleRemoveItem: (value: GameObj) => void;
 }

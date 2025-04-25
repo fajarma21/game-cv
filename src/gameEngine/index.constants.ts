@@ -1,11 +1,12 @@
-const ID_PROJECT = 1;
-const ID_EXP = 2;
-const ID_EDU = 3;
-const ID_ACHIEVEMENT = 4;
-const ID_MIRROR = 5;
-export const ID_CLOCK = 6;
-export const ID_BED = 7;
-export const ID_PHOTO = 8;
+import {
+  ID_PROJECT,
+  ID_ACHIEVEMENT,
+  ID_BED,
+  ID_EDU,
+  ID_EXP,
+  ID_MIRROR,
+  ID_PHOTO,
+} from "@/constants";
 
 export const SPEED = 320;
 
@@ -17,8 +18,8 @@ export const ITEMS = [
     sprites: "project",
     text: "Projects",
     pos: {
-      x: 50,
-      y: 45,
+      x: 5,
+      y: -105,
     },
     area: {
       x: 0,
@@ -35,8 +36,8 @@ export const ITEMS = [
     sprites: "exp",
     text: "Experiences",
     pos: {
-      x: 170,
-      y: 50,
+      x: 125,
+      y: -100,
     },
     area: {
       x: 0,
@@ -52,8 +53,8 @@ export const ITEMS = [
     sprites: "edu",
     text: "Educations",
     pos: {
-      x: 605,
-      y: 290,
+      x: 560,
+      y: 140,
     },
     area: {
       x: 5,
@@ -70,8 +71,8 @@ export const ITEMS = [
     sprites: "achievement",
     text: "Achievements",
     pos: {
-      x: 690,
-      y: 265,
+      x: 645,
+      y: 115,
     },
     area: {
       x: 0,
@@ -88,8 +89,8 @@ export const ITEMS = [
     sprites: "mirror",
     text: "Mirror",
     pos: {
-      x: 470,
-      y: 50,
+      x: 425,
+      y: -100,
     },
     area: {
       x: 5,
@@ -105,8 +106,8 @@ export const ITEMS = [
     sprites: "bed",
     text: "Bed",
     pos: {
-      x: 603,
-      y: 110,
+      x: 558,
+      y: -40,
     },
     area: {
       x: 0,
@@ -122,8 +123,8 @@ export const ITEMS = [
     sprites: "photo",
     text: "Photos",
     pos: {
-      x: 532,
-      y: 85,
+      x: 487,
+      y: -65,
     },
     area: {
       x: 10,

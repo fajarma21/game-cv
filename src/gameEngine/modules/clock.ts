@@ -1,14 +1,14 @@
 import dayjs from "dayjs";
-import { KAPLAYCtx } from "kaplay";
-import { ID_CLOCK } from "../index.constants";
+import { ID_CLOCK } from "@/constants";
+import { BasicParams } from "./types";
 
-const clock = (k: KAPLAYCtx) => {
+const clock = ({ k, parent }: BasicParams) => {
   let currHour = 0;
   let currMinute = 0;
 
-  const wallClock = k.add([
+  const wallClock = parent.add([
     k.anchor("center"),
-    k.pos(350, 70),
+    k.pos(305, -80),
     k.circle(20),
     k.color(k.rgb(200, 60, 60)),
     k.outline(2),

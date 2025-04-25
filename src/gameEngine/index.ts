@@ -1,12 +1,13 @@
+import dayjs from "dayjs";
 import kaplay, { GameObj } from "kaplay";
 
-import environtmentObj from "./modules/envirotnment";
+import { ID_BED, ID_CLOCK, ID_PHOTO } from "@/constants";
+
+import environmentObj from "./modules/environment";
 import itemObj from "./modules/item";
 import playerObj from "./modules/player";
 import spritesObj from "./modules/sprites";
 import { InitGameParams } from "./index.types";
-import { ID_BED, ID_CLOCK, ID_PHOTO } from "./index.constants";
-import dayjs from "dayjs";
 
 const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   let activeItems: GameObj[] = [];
@@ -30,21 +31,22 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     letterbox: true,
     global: false,
     background: [152, 231, 95],
+    texFilter: "linear",
   });
 
   spritesObj(k);
-
-  const { top, bottom } = environtmentObj(k);
-
-  let spaceKey: GameObj;
+  const { top, bottom } = environmentObj(k);
+  const game = top.add([k.z(4), k.timer()]);
   const { player } = playerObj({
     k,
-    top,
+    game,
+    parent: top,
     handleAddItem,
     handleRemoveItem,
   });
+  itemObj({ k, parent: top });
 
-  itemObj(k);
+  let spaceKey: GameObj;
 
   const label = bottom.add([
     k.text("", { size: 24, width: bottom.width - 40, align: "left" }),
@@ -63,14 +65,32 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     if (activeItems.length) {
       const item = activeItems[0];
       if (!item.isText) {
-        handleAction(item.uniqueId);
+        handleAction(item.uniqueId, game);
+        game.paused = true;
       } else if (item.uniqueId === ID_CLOCK) {
         description.text = dayjs().format("hh:mm:ss A");
       } else if (item.uniqueId === ID_BED) {
         const currentTime = dayjs().hour();
-        description.text = String(currentTime);
+        let text = "";
+        if (currentTime <= 4) {
+          text = "Why are you still up? Working? Let's continue tomorrow.";
+        } else if (currentTime <= 7) {
+          text =
+            "I just woke up and immediately realized there was another morning person.";
+        } else if (currentTime <= 12) {
+          text = "Seriously? at this time?";
+        } else if (currentTime <= 14) {
+          text = "Still working.";
+        } else if (currentTime <= 16) {
+          text = "It's too late to take a nap.";
+        } else if (currentTime <= 20) {
+          text = "Sleepy yet?";
+        } else if (currentTime <= 23) {
+          text = "I'll sleep after you.";
+        }
+        description.text = text;
       } else if (item.uniqueId === ID_PHOTO) {
-        description.text = "Wife, son, & daughter";
+        description.text = "My family.";
       }
     }
   });
@@ -111,7 +131,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     }
   });
 
-  k.debug.inspect = true;
+  // k.debug.inspect = true;
 };
 
 export default initGame;

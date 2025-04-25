@@ -1,24 +1,26 @@
+import { CANVAS_HEIGHT } from "@/constants";
 import { KAPLAYCtx } from "kaplay";
 
-const environtment = (k: KAPLAYCtx) => {
+const environment = (k: KAPLAYCtx) => {
   // top area
   const top = k.add([
-    k.pos(45, 150),
+    k.pos(45, 170),
     k.rect(710, 300),
     k.color(k.rgb(244, 206, 138)),
+    k.z(1),
   ]);
 
   // bottom area
   const bottom = k.add([
-    k.pos(20, k.height() - 180),
-    k.rect(k.width() - 40, 300),
+    k.pos(20, top.height + 215),
+    k.rect(k.width() - 40, CANVAS_HEIGHT - 535), // top height + gaps
     k.color(k.rgb(251, 189, 145)),
   ]);
 
   // walls
   // left
-  k.add([
-    k.pos(20, 0),
+  top.add([
+    k.pos(-25, -150),
     k.rect(25, top.height + 25),
     k.area(),
     k.body({ isStatic: true }),
@@ -26,20 +28,20 @@ const environtment = (k: KAPLAYCtx) => {
     k.z(10),
     "wall",
   ]);
-  k.add([
+  top.add([
     k.sprite("wall-h", {
       width: 25,
       height: 150,
     }),
-    k.pos(20, top.height + 25),
+    k.pos(-25, top.height - 125),
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
     "wall",
   ]);
   // right
-  k.add([
-    k.pos(top.width + 45, 0),
+  top.add([
+    k.pos(top.width, -150),
     k.rect(25, top.height + 25),
     k.area(),
     k.body({ isStatic: true }),
@@ -47,32 +49,32 @@ const environtment = (k: KAPLAYCtx) => {
     k.z(10),
     "wall",
   ]);
-  k.add([
+  top.add([
     k.sprite("wall-h", {
       width: 25,
       height: 150,
     }),
-    k.pos(top.width + 45, top.height + 25),
+    k.pos(top.width, top.height - 125),
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
     "wall",
   ]);
   // top
-  k.add([
+  top.add([
     k.sprite("wall-h", {
       tiled: true,
-      width: top.width + 5,
+      width: top.width + 10,
       height: 150,
     }),
-    k.pos(40, -1),
+    k.pos(-5, -151),
     k.area(),
     k.body({ isStatic: true }),
     "wall",
   ]);
   //bottom
-  k.add([
-    k.pos(45, 450),
+  top.add([
+    k.pos(0, top.height),
     k.rect(top.width, 25),
     k.area(),
     k.body({ isStatic: true }),
@@ -86,4 +88,4 @@ const environtment = (k: KAPLAYCtx) => {
   };
 };
 
-export default environtment;
+export default environment;
