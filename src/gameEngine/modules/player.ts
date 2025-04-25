@@ -1,15 +1,15 @@
 import { SPEED } from "../index.constants";
 import { PlayerParams } from "./types";
 
-const player = ({ activeItems, k, top, handleAction }: PlayerParams) => {
+const player = ({ k, top, handleAddItem, handleRemoveItem }: PlayerParams) => {
   const player = k.add([
     k.sprite("player", { anim: "down-idle" }),
-    k.area({ shape: new k.Rect(k.vec2(0, 0), 60, 40) }),
+    k.area({ shape: new k.Rect(k.vec2(0, 0), 40, 20) }),
     k.body(),
     k.anchor("bot"),
-    k.pos(top.width / 2, top.height / 2),
+    k.pos(k.width() / 2, top.height / 2 + 150),
     k.scale(0.8),
-    k.z(3),
+    k.z(4),
     "player",
     {
       speed: SPEED,
@@ -20,12 +20,11 @@ const player = ({ activeItems, k, top, handleAction }: PlayerParams) => {
   // shadow
   k.add([
     k.pos(),
-    k.follow(player, k.vec2(0, 10)),
+    k.follow(player, k.vec2(0, -10)),
     k.z(2),
     {
       draw() {
         k.drawEllipse({
-          anchor: "bot",
           radiusX: 30,
           radiusY: 20,
           color: k.BLACK,
@@ -36,16 +35,17 @@ const player = ({ activeItems, k, top, handleAction }: PlayerParams) => {
   ]);
 
   player.onCollide("item", (item) => {
-    item.use(k.color(k.WHITE));
-    activeItems = [];
-    activeItems.unshift(item);
-    handleAction(item.itemId);
+    if (item.sprites) {
+      item.use(k.sprite(item.sprites, { anim: "selected" }));
+    } else item.use(k.outline(2, k.WHITE));
+    handleAddItem(item);
   });
 
   player.onCollideEnd("item", (item) => {
-    item.use(k.color(k.GREEN));
-    activeItems = activeItems.filter((v) => v.itemId !== item.itemId);
-    handleAction("");
+    if (item.sprites) {
+      item.use(k.sprite(item.sprites, { anim: "main" }));
+    } else item.use(k.outline(2));
+    handleRemoveItem(item);
   });
 
   player.onUpdate(() => {
@@ -90,12 +90,14 @@ const player = ({ activeItems, k, top, handleAction }: PlayerParams) => {
 
     player.move(player.direction.scale(player.speed));
 
-    const items = k.get("item");
-    for (const item of items) {
-      if (player.pos.y < item.pos.y) item.z = 4;
-      else item.z = 1;
-    }
+    // const items = k.get("item");
+    // for (const item of items) {
+    //   if (player.pos.y < item.pos.y) item.z = 4;
+    //   else item.z = 1;
+    // }
   });
+
+  return { player };
 };
 
 export default player;

@@ -16,9 +16,71 @@ const sprites = (k: KAPLAYCtx) => {
     },
   });
   k.loadSprite("wall-h", "./wall_h.png");
-  k.loadSprite("floor", "./floor_sprites.png", {
-    sliceX: 10,
+  k.loadSprite("table-1", "./table_1.png");
+  k.loadSprite("table-2", "./table_2.png");
+  k.loadSprite("shelf", "./shelf.png");
+  k.loadSprite("tea", "./tea_sprites.png", {
+    sliceX: 4,
     sliceY: 1,
+    anims: {
+      idle: { from: 0, to: 3, loop: true, speed: 6 },
+    },
+  });
+  k.loadSprite("project", "./project_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("exp", "./exp_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("achievement", "./achievement_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("edu", "./edu_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("mirror", "./mirror_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("bed", "./bed_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
+  });
+  k.loadSprite("photo", "./photo_sprites.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      main: 0,
+      selected: 1,
+    },
   });
 };
 

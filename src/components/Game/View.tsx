@@ -30,17 +30,17 @@ const Game = () => {
   }, []);
 
   useEffect(() => {
-    if (canvasRef.current && !isLoaded.current && wrapperHeigth) {
+    if (canvasRef.current && !isLoaded.current) {
       initGame({
         width: CANVAS_WIDTH,
-        height: wrapperHeigth,
+        height: CANVAS_HEIGHT,
         canvas: canvasRef.current,
         handleAction,
       });
 
       isLoaded.current = true;
     }
-  }, [handleAction, wrapperHeigth]);
+  }, [handleAction]);
 
   return (
     <div ref={elementRef} className={css.container}>
