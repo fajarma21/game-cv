@@ -1,5 +1,5 @@
-import Dialog from "@/components/Dialog";
-import { DialogProps } from "./View.types";
+import { Dialog } from 'fajarma-react-lib';
+import type { DialogProps } from './View.types';
 
 const View = ({ display, id, onClose }: DialogProps) => {
   return (

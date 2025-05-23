@@ -1,18 +1,18 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { GameObj } from "kaplay";
+import type { GameObj } from 'kaplay';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
-import { CANVAS_HEIGHT, CANVAS_WIDTH } from "@/constants";
-import initGame from "@/gameEngine";
-import useResizeObserver from "@/hooks/useResizeObserver";
+import { CANVAS_HEIGHT, CANVAS_WIDTH } from '@/constants';
+import initGame from '@/gameEngine';
 
-import Dialog from "./components/Dialog";
+import Dialog from './components/Dialog';
 
-import * as css from "./View.styles";
+import { useResizeObserver } from 'fajarma-react-lib';
+import * as css from './View.styles';
 
 const Game = () => {
   const isLoaded = useRef(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const { elementRef, elementSize } = useResizeObserver();
+  const { ref, elementSize } = useResizeObserver<HTMLDivElement>();
 
   const [display, setDisplay] = useState(false);
   const [id, setId] = useState(0);
@@ -51,18 +51,16 @@ const Game = () => {
   }, [handleAction]);
 
   return (
-    <div className={css.container}>
-      <div ref={elementRef}>
-        <div
-          className={css.wrapper}
-          style={{
-            height: wrapperHeigth,
-          }}
-        >
-          <canvas ref={canvasRef} />
-        </div>
-        <Dialog display={display} id={id} onClose={handleCloseDialog} />
+    <div ref={ref}>
+      <div
+        className={css.wrapper}
+        style={{
+          height: wrapperHeigth,
+        }}
+      >
+        <canvas ref={canvasRef} />
       </div>
+      <Dialog display={display} id={id} onClose={handleCloseDialog} />
     </div>
   );
 };
