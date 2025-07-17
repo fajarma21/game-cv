@@ -1,5 +1,5 @@
-import { CANVAS_HEIGHT } from "@/constants";
-import { KAPLAYCtx } from "kaplay";
+import { CANVAS_HEIGHT } from '@/constants';
+import type { KAPLAYCtx } from 'kaplay';
 
 const environment = (k: KAPLAYCtx) => {
   // top area
@@ -26,10 +26,10 @@ const environment = (k: KAPLAYCtx) => {
     k.body({ isStatic: true }),
     k.color(k.rgb(240, 163, 104)),
     k.z(10),
-    "wall",
+    'wall',
   ]);
   top.add([
-    k.sprite("wall-h", {
+    k.sprite('wall-h', {
       width: 25,
       height: 150,
     }),
@@ -37,7 +37,7 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
-    "wall",
+    'wall',
   ]);
   // right
   top.add([
@@ -47,10 +47,10 @@ const environment = (k: KAPLAYCtx) => {
     k.body({ isStatic: true }),
     k.color(k.rgb(240, 163, 104)),
     k.z(10),
-    "wall",
+    'wall',
   ]);
   top.add([
-    k.sprite("wall-h", {
+    k.sprite('wall-h', {
       width: 25,
       height: 150,
     }),
@@ -58,11 +58,11 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
-    "wall",
+    'wall',
   ]);
   // top
   top.add([
-    k.sprite("wall-h", {
+    k.sprite('wall-h', {
       tiled: true,
       width: top.width + 10,
       height: 150,
@@ -70,7 +70,7 @@ const environment = (k: KAPLAYCtx) => {
     k.pos(-5, -151),
     k.area(),
     k.body({ isStatic: true }),
-    "wall",
+    'wall',
   ]);
   //bottom
   top.add([
@@ -79,7 +79,7 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.color(k.rgb(207, 162, 84)),
-    "wall",
+    'wall',
   ]);
 
   return {

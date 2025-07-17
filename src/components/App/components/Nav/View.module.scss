@@ -1,14 +1,12 @@
-import { css } from "@emotion/css";
-
-export const container = css`
+.container {
   padding: 8px 0;
   margin: 0 auto;
   display: flex;
   align-items: center;
   gap: 12px;
-`;
+}
 
-export const title = css`
+.title {
   margin-right: auto;
   h1 {
     position: relative;
@@ -47,9 +45,9 @@ export const title = css`
       }
     }
   }
-`;
+}
 
-export const menu = css`
+.menu {
   position: relative;
   display: flex;
   align-items: center;
@@ -59,4 +57,4 @@ export const menu = css`
   &:hover {
     color: var(--accent);
   }
-`;
+}

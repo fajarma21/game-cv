@@ -1,6 +1,8 @@
 import Game from './components/Game';
 import Nav from './components/Nav';
-import * as css from './View.styles';
+import css from './View.module.scss';
+
+// TODO: table & big potrait
 
 const App = () => {
   return (

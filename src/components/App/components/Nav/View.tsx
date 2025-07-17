@@ -1,4 +1,4 @@
-import * as css from "./View.styles";
+import css from './View.module.scss';
 
 const Nav = () => {
   return (

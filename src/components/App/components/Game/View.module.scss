@@ -1,10 +1,8 @@
-import { css } from "@emotion/css";
-
-export const wrapper = css`
+.wrapper {
   overflow: hidden;
   border-radius: 12px;
 
   canvas {
     display: block;
   }
-`;
+}

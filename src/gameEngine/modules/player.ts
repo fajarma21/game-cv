@@ -1,5 +1,5 @@
-import { SPEED } from "../index.constants";
-import { PlayerParams } from "./types";
+import { SPEED } from '../index.constants';
+import type { PlayerParams } from './types';
 
 const player = ({
   k,
@@ -9,12 +9,12 @@ const player = ({
   handleRemoveItem,
 }: PlayerParams) => {
   const player = game.add([
-    k.sprite("player", { anim: "down-idle" }),
+    k.sprite('player', { anim: 'down-idle' }),
     k.area({ shape: new k.Rect(k.vec2(0, 0), 40, 20) }),
     k.body(),
-    k.anchor("bot"),
+    k.anchor('bot'),
     k.pos(parent.width / 2, parent.height / 2),
-    "player",
+    'player',
     {
       speed: SPEED,
       direction: k.vec2(0, 0),
@@ -38,16 +38,16 @@ const player = ({
     },
   ]);
 
-  player.onCollide("item", (item) => {
+  player.onCollide('item', (item) => {
     if (item.sprites) {
-      item.use(k.sprite(item.sprites, { anim: "selected" }));
+      item.use(k.sprite(item.sprites, { anim: 'selected' }));
     } else item.use(k.outline(2, k.WHITE));
     handleAddItem(item);
   });
 
-  player.onCollideEnd("item", (item) => {
+  player.onCollideEnd('item', (item) => {
     if (item.sprites) {
-      item.use(k.sprite(item.sprites, { anim: "main" }));
+      item.use(k.sprite(item.sprites, { anim: 'main' }));
     } else item.use(k.outline(2));
     handleRemoveItem(item);
   });
@@ -56,40 +56,40 @@ const player = ({
     player.direction.x = 0;
     player.direction.y = 0;
 
-    if (k.isKeyDown("left")) player.direction.x = -1;
-    else if (k.isKeyDown("right")) player.direction.x = 1;
-    else if (k.isKeyDown("up")) player.direction.y = -1;
-    else if (k.isKeyDown("down")) player.direction.y = 1;
+    if (k.isKeyDown('left')) player.direction.x = -1;
+    else if (k.isKeyDown('right')) player.direction.x = 1;
+    else if (k.isKeyDown('up')) player.direction.y = -1;
+    else if (k.isKeyDown('down')) player.direction.y = 1;
 
     if (
       player.direction.eq(k.vec2(-1, 0)) &&
-      player.getCurAnim()?.name !== "left"
+      player.getCurAnim()?.name !== 'left'
     ) {
-      player.play("left");
+      player.play('left');
     }
     if (
       player.direction.eq(k.vec2(1, 0)) &&
-      player.getCurAnim()?.name !== "right"
+      player.getCurAnim()?.name !== 'right'
     ) {
-      player.play("right");
+      player.play('right');
     }
     if (
       player.direction.eq(k.vec2(0, -1)) &&
-      player.getCurAnim()?.name !== "up"
+      player.getCurAnim()?.name !== 'up'
     ) {
-      player.play("up");
+      player.play('up');
     }
     if (
       player.direction.eq(k.vec2(0, 1)) &&
-      player.getCurAnim()?.name !== "down"
+      player.getCurAnim()?.name !== 'down'
     ) {
-      player.play("down");
+      player.play('down');
     }
     if (
       player.direction.eq(k.vec2(0, 0)) &&
-      !player.getCurAnim()?.name.includes("idle")
+      !player.getCurAnim()?.name.includes('idle')
     ) {
-      player.play(player.getCurAnim()?.name + "-idle");
+      player.play(player.getCurAnim()?.name + '-idle');
     }
 
     player.move(player.direction.scale(player.speed));

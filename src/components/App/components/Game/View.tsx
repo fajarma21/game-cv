@@ -7,7 +7,8 @@ import initGame from '@/gameEngine';
 import Dialog from './components/Dialog';
 
 import { useResizeObserver } from 'fajarma-react-lib';
-import * as css from './View.styles';
+import css from './View.module.scss';
+// import * as css from './View.styles';
 
 const Game = () => {
   const isLoaded = useRef(false);
