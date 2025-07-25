@@ -1,0 +1,15 @@
+.row {
+  margin-bottom: 16px;
+}
+
+.descContainer {
+  border-radius: 4px 16px;
+  padding: 8px 16px;
+  background-color: var(--accent);
+}
+
+.chipContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}

@@ -1,0 +1,11 @@
+.imageWrapper {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+  margin-bottom: 16px;
+}
+.profPic {
+  display: block;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+}
