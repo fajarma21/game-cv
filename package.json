@@ -10,13 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@loadable/component": "^5.16.7",
+    "@types/loadable__component": "^5.13.9",
     "dayjs": "^1.11.13",
-    "fajarma-package": "^1.0.2",
+    "fajarma-package": "^1.1.0",
     "fajarma-react-lib": "^1.0.0",
     "kaplay": "^3001.0.9",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "zustand": "^5.0.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

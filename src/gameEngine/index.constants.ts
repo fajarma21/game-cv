@@ -1,12 +1,13 @@
 import {
-  ID_PROJECT,
-  ID_ACHIEVEMENT,
   ID_BED,
   ID_EDU,
   ID_EXP,
   ID_MIRROR,
   ID_PHOTO,
-} from "@/constants";
+  ID_PROJECT,
+} from '@/constants';
+
+export const LS_VISIT = 'fajarma_game_visit';
 
 export const SPEED = 320;
 
@@ -15,8 +16,8 @@ export const ITEMS = [
     id: ID_PROJECT,
     isBlock: false,
     isText: false,
-    sprites: "project",
-    text: "Projects",
+    sprites: 'project',
+    text: 'Projects',
     pos: {
       x: 5,
       y: -105,
@@ -33,8 +34,8 @@ export const ITEMS = [
     id: ID_EXP,
     isBlock: false,
     isText: false,
-    sprites: "exp",
-    text: "Experiences",
+    sprites: 'exp',
+    text: 'Experiences',
     pos: {
       x: 125,
       y: -100,
@@ -50,10 +51,10 @@ export const ITEMS = [
     id: ID_EDU,
     isBlock: false,
     isText: false,
-    sprites: "edu",
-    text: "Educations",
+    sprites: 'edu',
+    text: 'Educations',
     pos: {
-      x: 560,
+      x: 635,
       y: 140,
     },
     area: {
@@ -64,30 +65,30 @@ export const ITEMS = [
     },
     z: 3,
   },
-  {
-    id: ID_ACHIEVEMENT,
-    isBlock: false,
-    isText: false,
-    sprites: "achievement",
-    text: "Achievements",
-    pos: {
-      x: 645,
-      y: 115,
-    },
-    area: {
-      x: 0,
-      y: 115,
-      width: 65,
-      height: 20,
-    },
-    z: 3,
-  },
+  // {
+  //   id: ID_ACHIEVEMENT,
+  //   isBlock: false,
+  //   isText: false,
+  //   sprites: "achievement",
+  //   text: "Achievements",
+  //   pos: {
+  //     x: 645,
+  //     y: 115,
+  //   },
+  //   area: {
+  //     x: 0,
+  //     y: 115,
+  //     width: 65,
+  //     height: 20,
+  //   },
+  //   z: 3,
+  // },
   {
     id: ID_MIRROR,
     isBlock: false,
     isText: false,
-    sprites: "mirror",
-    text: "Mirror",
+    sprites: 'mirror',
+    text: 'Mirror',
     pos: {
       x: 425,
       y: -100,
@@ -103,8 +104,8 @@ export const ITEMS = [
     id: ID_BED,
     isBlock: true,
     isText: true,
-    sprites: "bed",
-    text: "Bed",
+    sprites: 'bed',
+    text: 'Bed',
     pos: {
       x: 558,
       y: -40,
@@ -120,8 +121,8 @@ export const ITEMS = [
     id: ID_PHOTO,
     isBlock: false,
     isText: true,
-    sprites: "photo",
-    text: "Photos",
+    sprites: 'photo',
+    text: 'Photos',
     pos: {
       x: 487,
       y: -65,

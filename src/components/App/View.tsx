@@ -1,16 +1,16 @@
-import Game from './components/Game';
-import Nav from './components/Nav';
-import css from './View.module.scss';
+import { checkIsMobile } from 'fajarma-package';
+
+import Main from './components/Main';
+import Mobile from './components/Mobile';
 
 // TODO: table & big potrait
 
 const App = () => {
-  return (
-    <div className={css.container}>
-      <Nav />
-      <Game />
-    </div>
-  );
+  const isMobile = checkIsMobile();
+
+  if (isMobile) return <Mobile />;
+
+  return <Main />;
 };
 
 export default App;

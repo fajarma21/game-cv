@@ -1,18 +1,23 @@
 import dayjs from 'dayjs';
+import { getLS, setLS } from 'fajarma-package';
 import type { GameObj } from 'kaplay';
 import kaplay from 'kaplay';
 
 import { ID_BED, ID_CLOCK, ID_PHOTO } from '@/constants';
 
+import { LS_VISIT } from './index.constants';
 import type { InitGameParams } from './index.types';
 import environmentObj from './modules/environment';
 import itemObj from './modules/item';
+import loadingObj from './modules/loading';
 import playerObj from './modules/player';
 import spritesObj from './modules/sprites';
+import textObj from './modules/text';
 
 const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   let activeItems: GameObj[] = [];
   let latestItem: GameObj | undefined;
+  const secondVisit = getLS(LS_VISIT);
 
   const handleAddItem = (value: GameObj) => {
     activeItems.unshift(value);
@@ -35,6 +40,8 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     texFilter: 'linear',
   });
 
+  loadingObj(k);
+
   spritesObj(k);
   const { top, bottom } = environmentObj(k);
   const game = top.add([k.z(4), k.timer()]);
@@ -47,20 +54,20 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   });
   itemObj({ k, parent: top });
 
+  k.onLoad(() => {
+    let greet = '';
+    if (secondVisit) greet = 'Welcome back!';
+    else {
+      setLS(LS_VISIT, true);
+      greet = 'Welcome to my house!';
+    }
+    greetings.text =
+      greet + '\nPlease make yourself comfortable.\n<use arrow keys to move>';
+  });
+
   let spaceKey: GameObj;
 
-  const label = bottom.add([
-    k.text('', { size: 24, width: bottom.width - 40, align: 'left' }),
-    k.pos(20, 20),
-    k.color(k.BLACK),
-    'label',
-  ]);
-  const description = bottom.add([
-    k.text('', { size: 24, width: bottom.width - 40, align: 'left' }),
-    k.pos(20, 60),
-    k.color(k.BLACK),
-    'description',
-  ]);
+  const { greetings, label, description } = textObj({ k, parent: bottom });
 
   k.onKeyPress('space', () => {
     if (activeItems.length) {
@@ -98,6 +105,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
 
   k.onUpdate(() => {
     if (activeItems.length) {
+      greetings.text = '';
       const newItem = activeItems[0];
       if (
         !latestItem ||

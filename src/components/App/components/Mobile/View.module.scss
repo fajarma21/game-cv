@@ -1,17 +1,13 @@
 @keyframes rotate {
-  from {
-    transform: rotate(0);
+  0% {
+    transform: rotate(-15deg);
   }
-  to {
-    transform: rotate(359deg);
+  50% {
+    transform: rotate(15deg);
   }
-}
-
-.container {
-  padding: 0 16px;
-  max-width: 800px;
-  min-height: 100vh;
-  margin: 0 auto;
+  100% {
+    transform: rotate(-15deg);
+  }
 }
 
 .mobileContainer {
@@ -35,5 +31,5 @@
 }
 
 .icon {
-  animation: rotate 2000ms linear infinite;
+  animation: rotate 1000ms linear infinite;
 }

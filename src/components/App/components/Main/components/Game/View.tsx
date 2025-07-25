@@ -1,3 +1,5 @@
+import useModalStore from '@/stores/useModalStore';
+import { useResizeObserver } from 'fajarma-react-lib';
 import type { GameObj } from 'kaplay';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -5,10 +7,7 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '@/constants';
 import initGame from '@/gameEngine';
 
 import Dialog from './components/Dialog';
-
-import { useResizeObserver } from 'fajarma-react-lib';
 import css from './View.module.scss';
-// import * as css from './View.styles';
 
 const Game = () => {
   const isLoaded = useRef(false);
@@ -16,8 +15,9 @@ const Game = () => {
   const { ref, elementSize } = useResizeObserver<HTMLDivElement>();
 
   const [display, setDisplay] = useState(false);
-  const [id, setId] = useState(0);
-  const [gameObj, setGameObj] = useState<GameObj>();
+
+  const gameRef = useRef<GameObj>(null);
+  const changeContentId = useModalStore((state) => state.changeContentId);
 
   const wrapperHeigth = Math.floor(
     (CANVAS_HEIGHT * elementSize.width) / CANVAS_WIDTH
@@ -26,16 +26,16 @@ const Game = () => {
   const handleCloseDialog = () => {
     setDisplay(false);
     if (canvasRef.current) canvasRef.current.focus();
-    if (gameObj) gameObj.paused = false;
+    if (gameRef.current) gameRef.current.paused = false;
   };
 
   const handleAction = useCallback(
     (value: number, game: GameObj) => {
       setDisplay(true);
-      setId(value);
-      if (!gameObj) setGameObj(game);
+      changeContentId(value);
+      if (!gameRef.current) gameRef.current = game;
     },
-    [gameObj]
+    [changeContentId]
   );
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Game = () => {
       >
         <canvas ref={canvasRef} />
       </div>
-      <Dialog display={display} id={id} onClose={handleCloseDialog} />
+      <Dialog display={display} onClose={handleCloseDialog} />
     </div>
   );
 };

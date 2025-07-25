@@ -1,4 +1,4 @@
-import { KAPLAYCtx, GameObj } from "kaplay";
+import type { GameObj, KAPLAYCtx } from 'kaplay';
 
 export interface BasicParams {
   k: KAPLAYCtx;
