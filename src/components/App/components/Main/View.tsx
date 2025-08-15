@@ -7,7 +7,9 @@ const Main = () => {
   return (
     <div className={css.container}>
       <Nav />
-      <Game />
+      <div className={css.gameWrapper}>
+        <Game />
+      </div>
     </div>
   );
 };

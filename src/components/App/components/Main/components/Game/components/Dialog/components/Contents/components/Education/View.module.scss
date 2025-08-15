@@ -1,0 +1,22 @@
+.logo {
+  display: block;
+  object-fit: contain;
+  justify-self: center;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 16px;
+}
+
+.info {
+  width: 240px;
+  .time {
+    color: #aaaaaa;
+  }
+  h3 {
+    color: gold;
+  }
+}

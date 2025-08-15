@@ -4,3 +4,32 @@
   min-height: 100vh;
   margin: 0 auto;
 }
+
+.gameWrapper {
+  --sideW: 250px;
+  position: relative;
+  margin-top: 5vh;
+
+  &::before,
+  &:after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: var(--sideW);
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+  }
+
+  &::before {
+    left: calc(0px - var(--sideW));
+    background-image: url('/src/assets/con-l.png');
+    background-position: center right;
+  }
+  &::after {
+    right: calc(0px - var(--sideW));
+    background-image: url('/src/assets/con-r.png');
+    background-position: center left;
+  }
+}

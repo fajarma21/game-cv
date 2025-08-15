@@ -52,7 +52,7 @@ const Game = () => {
   }, [handleAction]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={css.container}>
       <div
         className={css.wrapper}
         style={{

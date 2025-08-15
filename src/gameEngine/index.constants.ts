@@ -54,16 +54,16 @@ export const ITEMS = [
     sprites: 'edu',
     text: 'Educations',
     pos: {
-      x: 635,
-      y: 140,
+      x: 560,
+      y: 210,
     },
     area: {
       x: 5,
-      y: 90,
+      y: 40,
       width: 65,
       height: 20,
     },
-    z: 3,
+    z: 5,
   },
   // {
   //   id: ID_ACHIEVEMENT,

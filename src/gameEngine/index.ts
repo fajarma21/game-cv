@@ -36,7 +36,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     height,
     letterbox: true,
     global: false,
-    background: [152, 231, 95],
+    background: [79, 79, 84],
     texFilter: 'linear',
   });
 
@@ -88,7 +88,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
         } else if (currentTime <= 12) {
           text = 'Seriously? at this time?';
         } else if (currentTime <= 14) {
-          text = 'Still working.';
+          text = 'Boss is watching.';
         } else if (currentTime <= 16) {
           text = "It's too late to take a nap.";
         } else if (currentTime <= 20) {

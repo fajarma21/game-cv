@@ -1,14 +1,19 @@
 import achievementSprites from '@/assets/achievement_sprites.png';
+import aquarium from '@/assets/aquarium.png';
 import bedSprites from '@/assets/bed_sprites.png';
+import carpet from '@/assets/carpet.png';
+import catSprites from '@/assets/cat_sprites.png';
 import eduSprites from '@/assets/edu_sprites.png';
 import expSprites from '@/assets/exp_sprites.png';
+import fishSprites from '@/assets/fish_sprites.png';
 import mirrorSprites from '@/assets/mirror_sprites.png';
 import photoSprites from '@/assets/photo_sprites.png';
 import playerSprites from '@/assets/player_sprites.png';
 import projectSprites from '@/assets/project_sprites.png';
 import shelf from '@/assets/shelf.png';
-import table1 from '@/assets/table_1.png';
-import table2 from '@/assets/table_2.png';
+import table from '@/assets/table.png';
+import tableBack from '@/assets/table_back.png';
+import tableLong from '@/assets/table_long.png';
 import teaSprites from '@/assets/tea_sprites.png';
 import wallH from '@/assets/wall_h.png';
 
@@ -30,14 +35,22 @@ const sprites = (k: KAPLAYCtx) => {
     },
   });
   k.loadSprite('wall-h', wallH);
-  k.loadSprite('table-1', table1);
-  k.loadSprite('table-2', table2);
+  k.loadSprite('table', table);
+  k.loadSprite('table-long', tableLong);
+  k.loadSprite('table-back', tableBack);
   k.loadSprite('shelf', shelf);
   k.loadSprite('tea', teaSprites, {
     sliceX: 4,
     sliceY: 1,
     anims: {
       idle: { from: 0, to: 3, loop: true, speed: 6 },
+    },
+  });
+  k.loadSprite('fish', fishSprites, {
+    sliceX: 6,
+    sliceY: 2,
+    anims: {
+      idle: { from: 0, to: 11, loop: true, speed: 9 },
     },
   });
   k.loadSprite('project', projectSprites, {
@@ -94,6 +107,15 @@ const sprites = (k: KAPLAYCtx) => {
     anims: {
       main: 0,
       selected: 1,
+    },
+  });
+  k.loadSprite('carpet', carpet);
+  k.loadSprite('aquarium', aquarium);
+  k.loadSprite('cat', catSprites, {
+    sliceX: 5,
+    sliceY: 3,
+    anims: {
+      idle: { from: 0, to: 14, loop: true },
     },
   });
 };

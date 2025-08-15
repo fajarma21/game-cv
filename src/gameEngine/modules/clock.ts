@@ -1,32 +1,32 @@
-import dayjs from "dayjs";
-import { ID_CLOCK } from "@/constants";
-import { BasicParams } from "./types";
+import { ID_CLOCK } from '@/constants';
+import dayjs from 'dayjs';
+import type { BasicParams } from './types';
 
 const clock = ({ k, parent }: BasicParams) => {
   let currHour = 0;
   let currMinute = 0;
 
   const wallClock = parent.add([
-    k.anchor("center"),
+    k.anchor('center'),
     k.pos(305, -80),
     k.circle(20),
-    k.color(k.rgb(200, 60, 60)),
-    k.outline(2),
+    k.color(k.rgb(89, 186, 194)),
+    k.outline(2, k.rgb(19, 76, 81)),
     k.area({
       shape: new k.Rect(k.vec2(0, 90), 40, 20),
     }),
-    "item",
+    'item',
     {
       isText: true,
       uniqueId: ID_CLOCK,
-      text: "Clock",
+      text: 'Clock',
     },
   ]);
 
   const hourHand = wallClock.add([
     k.pos(),
     k.rect(2, 11),
-    k.anchor("bot"),
+    k.anchor('bot'),
     k.color(k.WHITE),
     k.rotate(90),
   ]);
@@ -34,7 +34,7 @@ const clock = ({ k, parent }: BasicParams) => {
   const minHand = wallClock.add([
     k.pos(),
     k.rect(2, 16),
-    k.anchor("bot"),
+    k.anchor('bot'),
     k.color(k.WHITE),
     k.rotate(),
   ]);

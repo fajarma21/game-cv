@@ -8,7 +8,9 @@ const View = ({ display, onClose }: DialogProps) => {
   return (
     <Dialog display={display} className={css.dialogModifier} onClose={onClose}>
       <button type="button" className={css.closeBtn} onClick={onClose} />
-      <Contents />
+      <div className={css.container}>
+        <Contents />
+      </div>
     </Dialog>
   );
 };
