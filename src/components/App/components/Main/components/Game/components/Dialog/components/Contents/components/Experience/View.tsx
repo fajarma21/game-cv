@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
-import { DATA, TOKOPEDIA } from '@/constants/data';
+import { DATA } from '@/constants/data';
 
 import css from './View.module.scss';
 
 const Experience = () => {
-  const [opened, setOpened] = useState([TOKOPEDIA]);
+  const [opened, setOpened] = useState([DATA.experience[0].id]);
 
   const toggleOpen = (id: number) => {
     setOpened((prev) => {

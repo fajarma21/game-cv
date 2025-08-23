@@ -1,0 +1,22 @@
+.carousel {
+  overflow-x: auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  padding: 0 16px;
+  margin-bottom: 8px;
+  scroll-snap-type: x mandatory;
+
+  img {
+    display: block;
+    scroll-snap-align: center;
+    border: 1px solid #555555;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

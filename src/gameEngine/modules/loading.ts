@@ -5,7 +5,7 @@ const loading = (k: KAPLAYCtx) => {
     k.drawRect({
       width: k.width(),
       height: k.height(),
-      color: k.rgb(152, 231, 95),
+      color: k.rgb(79, 79, 84),
     });
 
     k.drawCircle({
@@ -17,7 +17,7 @@ const loading = (k: KAPLAYCtx) => {
     k.drawCircle({
       pos: k.center().sub(0, 35),
       radius: 26,
-      color: k.rgb(152, 231, 95),
+      color: k.rgb(79, 79, 84),
     });
 
     k.drawText({

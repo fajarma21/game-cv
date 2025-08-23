@@ -1,45 +1,61 @@
 .container {
   display: grid;
-  grid-template-columns: 150px auto;
-  gap: 32px;
+  grid-template-columns: 182px auto;
+}
+
+.left {
+  position: relative;
+}
+
+.thumbnailContainer {
+  height: 480px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-right: 32px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .thumbnail {
+  --radius: 8px;
+  --borderW: 2px;
   all: unset;
   box-sizing: border-box;
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: 16px;
+  border-radius: var(--radius);
   width: 100%;
   height: 100px;
-  background-color: var(--accent);
-  transition: all 250ms ease-in-out;
+  border: var(--borderW) solid #555555;
+  transition: all 250ms;
 
   & * {
-    transition: all 250ms ease-in-out;
+    transition: all 250ms;
   }
 
   &::after {
     content: '';
     position: absolute;
-    left: 100%;
+    left: calc(100% + 2px);
     top: calc(50% - 1px);
     width: 0;
     height: 2px;
-    background-color: gold;
-    transition: all 250ms ease-in-out;
+    background-color: var(--accent);
+    transition: all 250ms;
   }
 
-  &:not(:last-child) {
+  &:not(:last-of-type) {
     margin-bottom: 16px;
   }
 
   .imgContainer {
     display: flex;
     overflow: hidden;
-    border-radius: 14px;
+    border-radius: calc(var(--radius) - var(--borderW))
+      calc(var(--radius) - var(--borderW)) 0 0;
     img {
       display: block;
       object-fit: cover;
@@ -47,6 +63,7 @@
     }
   }
   .titleContainer {
+    overflow: hidden;
     padding: 8px;
     height: 40px;
     flex: none;
@@ -61,12 +78,6 @@
 
   &:hover,
   &[data-active] {
-    .imgContainer {
-      border-radius: 14px 14px 8px 8px;
-      img {
-        object-position: bottom;
-      }
-    }
     .titleContainer {
       height: 64px;
       h4 {
@@ -76,15 +87,11 @@
   }
 
   &[data-active] {
-    border-color: gold;
-    background-color: gold;
+    border-color: var(--accent);
+    background-color: var(--accent);
 
     &::after {
       width: 32px;
-    }
-
-    .titleContainer {
-      color: var(--background);
     }
   }
 
@@ -93,9 +100,24 @@
   }
 }
 
-.highlight {
-  width: 400px;
-  border: 2px solid gold;
-  border-radius: 16px;
-  padding: 16px;
+.shadow {
+  position: absolute;
+  left: 0;
+  width: calc(100% - 32px);
+  height: 50px;
+  z-index: 1;
+  pointer-events: none;
+
+  &[data-type='top'] {
+    top: 0;
+    background-image: linear-gradient(to top, transparent, var(--background));
+  }
+  &[data-type='bot'] {
+    bottom: 0;
+    background-image: linear-gradient(
+      to bottom,
+      transparent,
+      var(--background)
+    );
+  }
 }

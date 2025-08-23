@@ -20,6 +20,7 @@
     width: var(--sideW);
     background-repeat: no-repeat;
     background-size: auto 100%;
+    filter: brightness(0.5);
   }
 
   &::before {
