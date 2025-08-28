@@ -18,6 +18,25 @@ import kuartetIcon from '@/assets/projects/kuartet-icon.png';
 import kuartet1Img from '@/assets/projects/kuartet-1.png';
 import kuartet2Img from '@/assets/projects/kuartet-2.png';
 import kuartet3Img from '@/assets/projects/kuartet-3.png';
+import tttIcon from '@/assets/projects/tic-tac-toe-icon.png';
+import ttt1Vid from '@/assets/projects/tic-tac-toe-video-1.mp4';
+import ttt1Img from '@/assets/projects/tic-tac-toe-1.png';
+import ttt2Img from '@/assets/projects/tic-tac-toe-2.png';
+import ttt3Img from '@/assets/projects/tic-tac-toe-3.png';
+import ttt4Img from '@/assets/projects/tic-tac-toe-4.png';
+import spMockIcon from '@/assets/projects/sp-mock-icon.png';
+import spMock1Img from '@/assets/projects/sp-mock-1.png';
+
+export const PROJECT_GAME_CV = 1;
+export const PROJECT_CV = 2;
+export const PROJECT_CVC = 3;
+export const PROJECT_POKEMON = 4;
+export const PROJECT_PATHFINDING = 5;
+export const PROJECT_TTT = 6;
+export const PROJECT_KUARTET = 7;
+export const PROJECT_SP_MOCK = 8;
+
+const HOSTNAME = 'https://fajarma.com';
 
 const REACT = {
   name: 'React',
@@ -85,7 +104,7 @@ export const DATA = {
   ],
   project: [
     {
-      id: 1,
+      id: PROJECT_GAME_CV,
       images: [cvGame1Img],
       title: 'Interactive CV',
       desc: 'Simple interactive game-themed CV.',
@@ -99,10 +118,11 @@ export const DATA = {
         ZUSTAND,
       ],
       repo: ['https://github.com/fajarma21/fajarma-game'],
-      url: 'github.com',
+      url: `${HOSTNAME}/interactive-cv`,
+      desktopOnly: true,
     },
     {
-      id: 2,
+      id: PROJECT_CVC,
       icon: cvcIcon,
       images: [cvc1Img, cvc2Img, cvc3Img],
       title: 'Client Video Converter',
@@ -120,7 +140,7 @@ export const DATA = {
       url: 'https://client-video-converter.vercel.app/',
     },
     {
-      id: 3,
+      id: PROJECT_POKEMON,
       icon: pokemonIcon,
       images: [pokemon1Img, pokemon2Img, pokemon3Img, pokemon4Img],
       title: 'Pokemon List',
@@ -141,24 +161,56 @@ export const DATA = {
       url: 'https://pokemon-gamma-cyan.vercel.app/',
     },
     {
-      id: 4,
+      id: PROJECT_PATHFINDING,
       icon: pathfindingIcon,
       images: [pathfinding1Img, pathfinding2Img, pathfinding3Img],
       title: 'React Pathfinding',
       desc: 'Pathfinding algorithm implementation.',
       stacks: [REACT, TYPESCRIPT, ZUSTAND],
       repo: ['https://github.com/fajarma21/react-pathfinding'],
-      url: 'https://fajarma21.github.io/react-pathfinding/',
+      url: `${HOSTNAME}/react-pathfinding/`,
     },
     {
-      id: 5,
+      id: PROJECT_TTT,
+      icon: tttIcon,
+      images: [ttt1Img, ttt2Img, ttt3Img, ttt4Img],
+      videos: [ttt1Vid],
+      title: 'Tic Tac Toe',
+      desc: 'Play simple Tic Tac Toe with your friend.',
+      stacks: [
+        REACT,
+        TYPESCRIPT,
+        {
+          name: 'WebSocket',
+          url: 'https://www.npmjs.com/package/ws',
+        },
+      ],
+      repo: [
+        'https://github.com/fajarma21/react-tic-tac-toe',
+        'https://github.com/fajarma21/ttt-ws',
+      ],
+      url: '',
+      urlText: 'Not deployed yet',
+    },
+    {
+      id: PROJECT_KUARTET,
       icon: kuartetIcon,
       images: [kuartet1Img, kuartet2Img, kuartet3Img],
       title: 'React Kuartet',
       desc: 'Collect 4 same type cards as many as you can.',
       stacks: [REACT, TYPESCRIPT],
       repo: ['https://github.com/fajarma21/react-kuartet'],
-      url: 'https://fajarma21.github.io/react-kuartet/',
+      url: `${HOSTNAME}/react-kuartet/`,
+    },
+    {
+      id: PROJECT_SP_MOCK,
+      icon: spMockIcon,
+      images: [spMock1Img],
+      title: 'Sponge Mock',
+      desc: 'Text converter for Spongebob mocking meme',
+      stacks: [REACT, TYPESCRIPT],
+      repo: ['https://github.com/fajarma21/sponge-mock'],
+      url: `${HOSTNAME}/sponge-mock/`,
     },
   ],
 };

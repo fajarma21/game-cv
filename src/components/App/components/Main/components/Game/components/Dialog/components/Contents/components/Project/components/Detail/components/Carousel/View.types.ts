@@ -1,4 +1,5 @@
 export interface CarouselProps {
-  title: string;
   images: string[];
+  title: string;
+  videos?: string[];
 }

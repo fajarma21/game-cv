@@ -1,17 +1,29 @@
 import { Fragment } from 'react';
-import { FaCube, FaGithub, FaLink } from 'react-icons/fa6';
+import { FaCube, FaGithub, FaLink, FaLinkSlash } from 'react-icons/fa6';
 
 import Carousel from './components/Carousel';
 import css from './View.module.scss';
 import type { DetailProps } from './View.types';
 
 const Detail = ({ data }: DetailProps) => {
-  const { desc, images, repo, stacks, title, url } = data;
+  const {
+    desc,
+    desktopOnly,
+    images,
+    repo,
+    stacks,
+    title,
+    url,
+    urlText,
+    videos,
+  } = data;
+
+  const urlAvailable = !desktopOnly && url;
 
   return (
     <div className={css.container}>
       <div className={css.inner}>
-        <Carousel images={images} title={title} />
+        <Carousel images={images} title={title} videos={videos} />
         <div className={css.content}>
           <h3 className={css.title}>{title}</h3>
           <p className={css.description}>{desc}</p>
@@ -52,12 +64,17 @@ const Detail = ({ data }: DetailProps) => {
         </div>
       </div>
       <div className={css.btnWrapper}>
-        <button type="button" className={css.liveBtn}>
+        <a
+          className={css.liveBtn}
+          href={urlAvailable || '#!'}
+          aria-disabled={!urlAvailable}
+          target={urlAvailable ? '_blank' : ''}
+        >
           <div className={css.text}>
-            <FaLink />
-            <b>{url}</b>
+            {urlAvailable ? <FaLink /> : <FaLinkSlash />}
+            <b>{desktopOnly ? 'Available on desktop only' : url || urlText}</b>
           </div>
-        </button>
+        </a>
       </div>
     </div>
   );

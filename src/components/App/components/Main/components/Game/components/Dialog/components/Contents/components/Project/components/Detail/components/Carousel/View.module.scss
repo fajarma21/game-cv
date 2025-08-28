@@ -1,19 +1,66 @@
+.wrapper {
+  position: relative;
+
+  .arrowBtn {
+    all: unset;
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    display: none;
+    top: 0;
+    width: 48px;
+    height: 100%;
+    text-align: center;
+    z-index: 1;
+    &[data-pos='left'] {
+      border-top-left-radius: 14px;
+      background-image: linear-gradient(
+        to left,
+        transparent,
+        var(--background)
+      );
+    }
+    &[data-pos='right'] {
+      right: 0;
+      border-top-right-radius: 14px;
+      background-image: linear-gradient(
+        to right,
+        transparent,
+        var(--background)
+      );
+    }
+    svg {
+      pointer-events: none;
+    }
+  }
+
+  &:hover .arrowBtn {
+    display: block;
+  }
+}
+
 .carousel {
   overflow-x: auto;
   width: 100%;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 8px;
-  padding: 0 16px;
+  gap: 4px;
+  border-radius: 14px 14px 0 0;
   margin-bottom: 8px;
   scroll-snap-type: x mandatory;
 
-  img {
-    display: block;
+  .item {
+    flex: none;
     scroll-snap-align: center;
-    border: 1px solid #555555;
-    border-radius: 4px;
+
+    img,
+    video {
+      display: block;
+    }
+    video {
+      width: 100%;
+    }
   }
 
   &::-webkit-scrollbar {

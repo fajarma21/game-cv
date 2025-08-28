@@ -1,29 +1,38 @@
+import { useState, type CSSProperties } from 'react';
+import { useIntersect } from 'fajarma-react-lib';
+
 import { DATA } from '@/constants/data';
 
 import Detail from './components/Detail';
-import { useState } from 'react';
+import { HIDE } from './View.constants';
 import css from './View.module.scss';
-import { useIntersect } from 'fajarma-react-lib';
+
+const PROJECT = DATA.project.filter((item) => !HIDE.includes(item.id));
 
 const Project = () => {
-  const [activeItem, setActiveItem] = useState(DATA.project[0]);
+  const [activeItem, setActiveItem] = useState(PROJECT[0]);
+  const [topIntersecting, setTopIntersecting] = useState(false);
+  const [botIntersecting, setBotIntersecting] = useState(false);
 
-  const { ref: topRef, intersecting: topIntersecting } = useIntersect({
-    callback: () => console.log(),
-  });
-  const { ref: botRef, intersecting: botIntersecting } = useIntersect({
-    callback: () => console.log(),
-  });
+  const { ref: topRef } = useIntersect<HTMLDivElement>((value) =>
+    setTopIntersecting(value)
+  );
+  const { ref: botRef } = useIntersect<HTMLDivElement>((value) =>
+    setBotIntersecting(value)
+  );
 
   return (
     <div>
       <h2>Project</h2>
-      <div className={css.container}>
+      <div
+        className={css.container}
+        style={{ '--ColH': '440px' } as CSSProperties}
+      >
         <div className={css.left}>
           <div className={css.thumbnailContainer}>
             {!topIntersecting && <div className={css.shadow} data-type="top" />}
             <div ref={topRef} />
-            {DATA.project.map((item) => {
+            {PROJECT.map((item) => {
               const { id, icon, title, images } = item;
               return (
                 <button

@@ -13,7 +13,7 @@
   display: flex;
   flex-direction: column;
   width: 400px;
-  height: 480px;
+  height: var(--ColH);
   max-height: calc(100vh - 120px);
   border-radius: 16px;
   border: 2px solid var(--accent);
@@ -23,7 +23,6 @@
 .inner {
   height: 100%;
   overflow-y: auto;
-  padding-top: 16px;
 }
 
 .title {
@@ -79,7 +78,6 @@
 
 .liveBtn {
   all: unset;
-  cursor: pointer;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
@@ -89,8 +87,7 @@
   width: 100%;
   height: 48px;
   border-radius: 24px;
-  color: gold;
-  border: 2px solid gold;
+  border: 2px solid;
   transition: all 250ms, transform 750ms;
 
   .text {
@@ -109,40 +106,52 @@
     }
   }
 
-  &::before,
-  &::after {
-    content: '';
-    box-sizing: border-box;
-    position: absolute;
-    left: -48px;
-    top: 0;
-    height: 48px;
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    color: #afafaf;
+    border-color: #afafaf;
   }
 
-  &::before {
-    z-index: 1;
-    width: 48px;
-    background-color: var(--background);
-    transition: all 750ms;
-  }
+  &[aria-disabled='false'] {
+    cursor: pointer;
+    color: gold;
+    border-color: gold;
 
-  &::after {
-    z-index: 0;
-    width: 24px;
-    background-color: gold;
-    transition: width 750ms;
-  }
-
-  &:hover {
-    color: #6f5d00;
-    transform: scale(1.01);
-    &::before {
-      left: 100%;
-      border-radius: 16px;
-      transform: rotate(180deg);
-    }
+    &::before,
     &::after {
-      width: calc(100% + 72px);
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      left: -48px;
+      top: 0;
+      height: 48px;
+    }
+
+    &::before {
+      z-index: 1;
+      width: 48px;
+      background-color: var(--background);
+      transition: all 750ms;
+    }
+
+    &::after {
+      z-index: 0;
+      width: 24px;
+      background-color: gold;
+      transition: width 750ms;
+    }
+
+    &:hover {
+      color: #6f5d00;
+      transform: scale(1.01);
+      &::before {
+        left: 100%;
+        border-radius: 16px;
+        transform: rotate(180deg);
+      }
+      &::after {
+        width: calc(100% + 72px);
+      }
     }
   }
 }

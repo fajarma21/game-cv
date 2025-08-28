@@ -8,7 +8,7 @@
 }
 
 .thumbnailContainer {
-  height: 480px;
+  height: var(--ColH);
   max-height: calc(100vh - 120px);
   overflow-y: auto;
   padding-right: 32px;
