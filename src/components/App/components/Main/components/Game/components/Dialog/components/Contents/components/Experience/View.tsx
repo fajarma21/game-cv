@@ -17,7 +17,7 @@ const Experience = () => {
   return (
     <div>
       <h2>Experience</h2>
-      {DATA.experience.map(({ id, company, time, title, desc }, index) => (
+      {DATA.experience.map(({ id, company, jobs, time, title }, index) => (
         <div
           key={`exp-${index}`}
           className={css.container}
@@ -46,7 +46,11 @@ const Experience = () => {
           <div className={css.row}>
             <div className={css.left} />
             <div className={css.right}>
-              <div className={css.desc}>{desc}</div>
+              <ul className={css.desc}>
+                {jobs.map((item, index) => (
+                  <li key={`job-${index}`}>{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

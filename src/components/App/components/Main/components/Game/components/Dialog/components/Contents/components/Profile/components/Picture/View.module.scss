@@ -1,8 +1,27 @@
+@keyframes jiggly {
+  0% {
+    transform: rotate3d(-1, -1, 0, 20deg);
+  }
+  25% {
+    transform: rotate3d(-1, 1, 0, 20deg);
+  }
+  50% {
+    transform: rotate3d(1, 1, 0, 20deg);
+  }
+  75% {
+    transform: rotate3d(1, -1, 0, 20deg);
+  }
+  100% {
+    transform: rotate3d(-1, -1, 0, 20deg);
+  }
+}
+
 .imageWrapper {
   position: relative;
   align-self: center;
   justify-self: center;
   margin-bottom: 16px;
+  animation: jiggly 10s infinite linear;
 }
 .profPic {
   display: block;
