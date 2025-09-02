@@ -1,0 +1,36 @@
+@mixin rotate3D($deg, $name: 'rotating') {
+  @keyframes #{$name} {
+    0% {
+      transform: rotate3d(-1, -1, 0, $deg);
+    }
+    25% {
+      transform: rotate3d(-1, 1, 0, $deg);
+    }
+    50% {
+      transform: rotate3d(1, 1, 0, $deg);
+    }
+    75% {
+      transform: rotate3d(1, -1, 0, $deg);
+    }
+    100% {
+      transform: rotate3d(-1, -1, 0, $deg);
+    }
+  }
+}
+
+@mixin rotateShow($name: 'rotateShow') {
+  @keyframes #{$name} {
+    0% {
+      opacity: 0;
+      transform: translateY(-100px) rotateY(180deg);
+    }
+    50% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateY(0);
+    }
+  }
+}

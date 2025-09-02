@@ -1,26 +1,12 @@
-@keyframes moving {
-  0% {
-    transform: rotate3d(-1, -1, 0, 30deg);
-  }
-  25% {
-    transform: rotate3d(-1, 1, 0, 30deg);
-  }
-  50% {
-    transform: rotate3d(1, 1, 0, 30deg);
-  }
-  75% {
-    transform: rotate3d(1, -1, 0, 30deg);
-  }
-  100% {
-    transform: rotate3d(-1, -1, 0, 30deg);
-  }
-}
+@use '@/styles/animation.scss' as mixin;
+
+@include mixin.rotateShow();
 
 .logo {
   display: block;
   object-fit: contain;
   justify-self: center;
-  animation: moving 10s infinite linear;
+  animation: rotateShow 2s forwards;
 }
 
 .container {

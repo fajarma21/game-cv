@@ -12,6 +12,22 @@
   }
 }
 
+@keyframes rowDisplay {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.wrapper {
+  overflow-y: auto;
+  max-height: calc(100vh - 152px);
+}
+
 .container {
   margin-bottom: 32px;
 
@@ -82,6 +98,7 @@
     .right {
       width: 460px;
       overflow: hidden;
+      animation: rowDisplay 500ms var(--delay) backwards;
 
       h3,
       p {

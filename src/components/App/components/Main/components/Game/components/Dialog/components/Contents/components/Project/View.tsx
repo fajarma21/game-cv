@@ -32,13 +32,16 @@ const Project = () => {
           <div className={css.thumbnailContainer}>
             {!topIntersecting && <div className={css.shadow} data-type="top" />}
             <div ref={topRef} />
-            {PROJECT.map((item) => {
+            {PROJECT.map((item, index) => {
               const { id, icon, title, images } = item;
               return (
                 <button
                   key={id}
                   type="button"
                   className={css.thumbnail}
+                  style={
+                    { '--delay': `${(index + 1) * 100}ms` } as CSSProperties
+                  }
                   data-active={activeItem.id === id || undefined}
                   onClick={() => setActiveItem(item)}
                 >

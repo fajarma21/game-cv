@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type CSSProperties } from 'react';
 
 import { DATA } from '@/constants/data';
 
@@ -15,46 +15,49 @@ const Experience = () => {
   };
 
   return (
-    <div>
+    <div className={css.wrapper}>
       <h2>Experience</h2>
-      {DATA.experience.map(({ id, company, jobs, time, title }, index) => (
-        <div
-          key={`exp-${index}`}
-          className={css.container}
-          data-active={opened.includes(id) || undefined}
-        >
-          <div className={css.row}>
-            <div className={css.left}>
-              <button
-                type="button"
-                className={css.dot}
-                onClick={() => toggleOpen(id)}
-              />
+      <div>
+        {DATA.experience.map(({ id, company, jobs, time, title }, index) => (
+          <div
+            key={`exp-${index}`}
+            style={{ '--delay': `${(index + 1) * 100}ms` } as CSSProperties}
+            className={css.container}
+            data-active={opened.includes(id) || undefined}
+          >
+            <div className={css.row}>
+              <div className={css.left}>
+                <button
+                  type="button"
+                  className={css.dot}
+                  onClick={() => toggleOpen(id)}
+                />
+              </div>
+              <div className={css.right}>
+                <button
+                  type="button"
+                  className={css.headBtn}
+                  onClick={() => toggleOpen(id)}
+                >
+                  <p className={css.date}>{time}</p>
+                  <h3>{company}</h3>
+                  <p className={css.title}>{title}</p>
+                </button>
+              </div>
             </div>
-            <div className={css.right}>
-              <button
-                type="button"
-                className={css.headBtn}
-                onClick={() => toggleOpen(id)}
-              >
-                <p className={css.date}>{time}</p>
-                <h3>{company}</h3>
-                <p className={css.title}>{title}</p>
-              </button>
+            <div className={css.row}>
+              <div className={css.left} />
+              <div className={css.right}>
+                <ul className={css.desc}>
+                  {jobs.map((item, index) => (
+                    <li key={`job-${index}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
-          <div className={css.row}>
-            <div className={css.left} />
-            <div className={css.right}>
-              <ul className={css.desc}>
-                {jobs.map((item, index) => (
-                  <li key={`job-${index}`}>{item}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };
