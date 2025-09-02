@@ -16,7 +16,9 @@
   height: var(--ColH);
   max-height: calc(100vh - 120px);
   border-radius: 16px;
-  border: 2px solid var(--accent);
+  border: 2px solid #393939;
+  box-shadow: 0px 4px 12px 0 rgb(17 17 17 / 50%);
+  background-color: #393939;
   animation: display 250ms 1 forwards;
 }
 
@@ -130,7 +132,7 @@
     &::before {
       z-index: 1;
       width: 48px;
-      background-color: var(--background);
+      background-color: #393939;
       transition: all 750ms;
     }
 
@@ -143,7 +145,7 @@
 
     &:hover {
       color: #6f5d00;
-      transform: scale(1.01);
+      transform: scale(1.02);
       &::before {
         left: 100%;
         border-radius: 16px;

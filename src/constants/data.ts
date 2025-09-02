@@ -125,10 +125,10 @@ export const DATA = {
       subTitle: 'Skills',
       list: ['HTML, CSS, JS', 'React', 'Typescript', 'NodeJS'],
     },
-    {
-      subTitle: 'Interest',
-      list: ['Front-end', 'Illustration', 'Game(+)dev'],
-    },
+    // {
+    //   subTitle: 'Interest',
+    //   list: ['Front-end', 'Illustration', 'Game(+)dev'],
+    // },
   ],
   project: [
     {
