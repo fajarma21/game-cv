@@ -6,24 +6,19 @@ import css from './View.module.scss';
 import type { DetailProps } from './View.types';
 
 const Detail = ({ data }: DetailProps) => {
-  const {
-    desc,
-    desktopOnly,
-    images,
-    repo,
-    stacks,
-    title,
-    url,
-    urlText,
-    videos,
-  } = data;
-
-  const urlAvailable = !desktopOnly && url;
+  const { desc, imageTotal, prefix, repo, stacks, title, url, videoTotal } =
+    data;
+  const stacksList = stacks.map((item) => JSON.parse(item));
 
   return (
     <div className={css.container}>
       <div className={css.inner}>
-        <Carousel images={images} title={title} videos={videos} />
+        <Carousel
+          prefix={prefix}
+          imageTotal={imageTotal}
+          title={title}
+          videoTotal={videoTotal}
+        />
         <div className={css.content}>
           <h3 className={css.title}>{title}</h3>
           <p className={css.description}>{desc}</p>
@@ -32,7 +27,7 @@ const Detail = ({ data }: DetailProps) => {
               <FaCube title="Stacks" />
             </div>
             <div className={css.stacks}>
-              {stacks.map((item, index) => (
+              {stacksList.map((item, index) => (
                 <Fragment key={`stack-${index}`}>
                   <a href={item.url} target="_blank">
                     {item.name}
@@ -66,13 +61,13 @@ const Detail = ({ data }: DetailProps) => {
       <div className={css.btnWrapper}>
         <a
           className={css.liveBtn}
-          href={urlAvailable || '#!'}
-          aria-disabled={!urlAvailable}
-          target={urlAvailable ? '_blank' : ''}
+          href={url || '#!'}
+          aria-disabled={!url}
+          target={url ? '_blank' : ''}
         >
           <div className={css.text}>
-            {urlAvailable ? <FaLink /> : <FaLinkSlash />}
-            <b>{desktopOnly ? 'Available on desktop only' : url || urlText}</b>
+            {url ? <FaLink /> : <FaLinkSlash />}
+            <b>{url || 'Not deployef yet'}</b>
           </div>
         </a>
       </div>

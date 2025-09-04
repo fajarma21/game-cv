@@ -1,5 +1,5 @@
-import type { DATA } from '@/constants/data';
+import type { ProjectData } from '@/types';
 
 export interface DetailProps {
-  data: (typeof DATA.project)[0];
+  data: ProjectData;
 }

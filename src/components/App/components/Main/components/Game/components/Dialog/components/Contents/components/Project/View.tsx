@@ -1,18 +1,22 @@
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 
-import { DATA } from '@/constants/data';
+import useGetData from '@/hooks/useGetData';
+import type { ProjectData } from '@/types';
 
 import Detail from './components/Detail';
 import { HIDE } from './View.constants';
 import css from './View.module.scss';
-
-const PROJECT = DATA.project.filter((item) => !HIDE.includes(item.id));
+import useProjectStore from '@/stores/useProjectStore';
+import { PROJECT_ASSETS } from '@/constants/project';
 
 const Project = () => {
-  const [activeItem, setActiveItem] = useState(PROJECT[0]);
+  const [activeItem, setActiveItem] = useState<ProjectData>();
   const [topIntersecting, setTopIntersecting] = useState(false);
   const [botIntersecting, setBotIntersecting] = useState(false);
+
+  const project = useProjectStore((state) => state.project);
+  const updateProject = useProjectStore((state) => state.updateProject);
 
   const { ref: topRef } = useIntersect<HTMLDivElement>((value) =>
     setTopIntersecting(value)
@@ -20,6 +24,22 @@ const Project = () => {
   const { ref: botRef } = useIntersect<HTMLDivElement>((value) =>
     setBotIntersecting(value)
   );
+
+  const { loading } = useGetData<ProjectData>({
+    collectionName: 'project',
+    onCompleted: (data) => {
+      updateProject(data.filter((item) => !HIDE.includes(item.id)));
+    },
+    skip: !!project,
+  });
+
+  useEffect(() => {
+    if (project) setActiveItem(project[0]);
+  }, [project]);
+
+  if (loading) return 'loading...';
+
+  if (!project) return 'no data';
 
   return (
     <div>
@@ -32,8 +52,8 @@ const Project = () => {
           <div className={css.thumbnailContainer}>
             {!topIntersecting && <div className={css.shadow} data-type="top" />}
             <div ref={topRef} />
-            {PROJECT.map((item, index) => {
-              const { id, icon, title, images } = item;
+            {project.map((item, index) => {
+              const { id, prefix, title } = item;
               return (
                 <button
                   key={id}
@@ -42,11 +62,13 @@ const Project = () => {
                   style={
                     { '--delay': `${(index + 1) * 100}ms` } as CSSProperties
                   }
-                  data-active={activeItem.id === id || undefined}
+                  data-active={
+                    (activeItem && activeItem.id === id) || undefined
+                  }
                   onClick={() => setActiveItem(item)}
                 >
                   <div className={css.imgContainer}>
-                    <img src={icon || images[0]} alt={title} />
+                    <img src={PROJECT_ASSETS[`${prefix}-thumb`]} alt={title} />
                   </div>
 
                   <div className={css.titleContainer}>
@@ -59,7 +81,7 @@ const Project = () => {
             <div ref={botRef} />
           </div>
         </div>
-        <Detail key={activeItem.id} data={activeItem} />
+        {activeItem && <Detail key={activeItem.id} data={activeItem} />}
       </div>
     </div>
   );

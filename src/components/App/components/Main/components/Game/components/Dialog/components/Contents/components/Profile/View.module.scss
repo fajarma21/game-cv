@@ -1,5 +1,12 @@
+.container {
+  width: 400px;
+}
+
 .row {
   margin-bottom: 16px;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .descContainer {

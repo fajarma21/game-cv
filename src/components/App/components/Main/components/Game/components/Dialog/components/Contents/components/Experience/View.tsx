@@ -1,11 +1,31 @@
-import { useState, type CSSProperties } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 
-import { DATA } from '@/constants/data';
+import useExperienceStore from '@/stores/useExperienceStore';
+import useGetData from '@/hooks/useGetData';
+import type { ExperienceData } from '@/types';
+import convertFSDate from '@/helpers/convertFSDate';
 
 import css from './View.module.scss';
 
 const Experience = () => {
-  const [opened, setOpened] = useState([DATA.experience[0].id]);
+  const [opened, setOpened] = useState<number[]>([]);
+
+  const experience = useExperienceStore((state) => state.experience);
+  const updateExperience = useExperienceStore(
+    (state) => state.updateExperience
+  );
+
+  const { loading } = useGetData<ExperienceData>({
+    collectionName: 'experience',
+    onCompleted: (data) => {
+      updateExperience(data);
+    },
+    skip: !!experience,
+  });
+
+  useEffect(() => {
+    if (experience) setOpened([experience[0].id]);
+  }, [experience]);
 
   const toggleOpen = (id: number) => {
     setOpened((prev) => {
@@ -14,11 +34,15 @@ const Experience = () => {
     });
   };
 
+  if (loading) return 'loading...';
+
+  if (!experience) return 'no data';
+
   return (
     <div className={css.wrapper}>
       <h2>Experience</h2>
       <div>
-        {DATA.experience.map(({ id, company, jobs, time, title }, index) => (
+        {experience.map(({ id, company, jobs, start, end, title }, index) => (
           <div
             key={`exp-${index}`}
             style={{ '--delay': `${(index + 1) * 100}ms` } as CSSProperties}
@@ -39,7 +63,9 @@ const Experience = () => {
                   className={css.headBtn}
                   onClick={() => toggleOpen(id)}
                 >
-                  <p className={css.date}>{time}</p>
+                  <p className={css.date}>
+                    {convertFSDate(start)} - {convertFSDate(end)}
+                  </p>
                   <h3>{company}</h3>
                   <p className={css.title}>{title}</p>
                 </button>

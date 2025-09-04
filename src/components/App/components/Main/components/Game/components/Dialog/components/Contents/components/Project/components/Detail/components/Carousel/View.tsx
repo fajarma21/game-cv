@@ -4,10 +4,11 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
 import css from './View.module.scss';
 import type { CarouselProps } from './View.types';
+import { PROJECT_ASSETS } from '@/constants/project';
 
-const Carousel = ({ images, title, videos }: CarouselProps) => {
-  const isMultiple = images.length > 1;
-  const previewLength = (videos || []).length + images.length;
+const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
+  const isMultiple = imageTotal > 1;
+  const previewLength = videoTotal + imageTotal;
 
   const scrollableRef = useRef<HTMLDivElement>(null);
   const [leftIntersecting, setLeftIntersecting] = useState(false);
@@ -54,7 +55,10 @@ const Carousel = ({ images, title, videos }: CarouselProps) => {
         </button>
       )}
       <div className={css.carousel} ref={scrollableRef}>
-        {(videos || []).map((item, index) => {
+        {[...Array(videoTotal)].map((_, index) => {
+          const idxName = index + 1;
+          const videoKey =
+            `${prefix}-video-${idxName}` as keyof typeof PROJECT_ASSETS;
           return (
             <div
               key={`video-${index}`}
@@ -64,15 +68,19 @@ const Carousel = ({ images, title, videos }: CarouselProps) => {
               className={css.item}
               style={itemStyle}
             >
-              <video controls poster={images[index] || images[0]}>
-                <source src={item} type="video/mp4" />
+              <video controls poster={PROJECT_ASSETS[`${prefix}-1`]}>
+                <source src={PROJECT_ASSETS[videoKey]} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
           );
         })}
-        {images.map((item, index) => {
-          const imgIdx = (videos || []).length + index;
+        {[...Array(imageTotal)].map((_, index) => {
+          const idxName = index + 1;
+          const imgKey = `${prefix}-${idxName}` as keyof typeof PROJECT_ASSETS;
+          const imgUrl = PROJECT_ASSETS[imgKey];
+
+          const imgIdx = videoTotal + index;
           return (
             <div
               key={`image-${imgIdx}`}
@@ -86,8 +94,8 @@ const Carousel = ({ images, title, videos }: CarouselProps) => {
               className={css.item}
               style={itemStyle}
             >
-              <a href={item} target="_blank">
-                <img src={item} alt={`${title}-${index}`} width="100%" />
+              <a href={imgUrl} target="_blank">
+                <img src={imgUrl} alt={`${title}-${index}`} width="100%" />
               </a>
             </div>
           );
