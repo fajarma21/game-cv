@@ -1,0 +1,16 @@
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.icon {
+  display: block;
+  margin: 16px auto;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  animation: rotate 2500ms linear infinite;
+}

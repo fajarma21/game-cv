@@ -3,6 +3,8 @@ import { useIntersect } from 'fajarma-react-lib';
 
 import useGetData from '@/hooks/useGetData';
 import type { ProjectData } from '@/types';
+import LoaderIcon from '@/components/LoaderIcon';
+import NoData from '@/components/NoData';
 
 import Detail from './components/Detail';
 import { HIDE } from './View.constants';
@@ -37,52 +39,61 @@ const Project = () => {
     if (project) setActiveItem(project[0]);
   }, [project]);
 
-  if (loading) return 'loading...';
-
-  if (!project) return 'no data';
+  if (loading) return <LoaderIcon />;
 
   return (
     <div>
       <h2>Project</h2>
-      <div
-        className={css.container}
-        style={{ '--ColH': '440px' } as CSSProperties}
-      >
-        <div className={css.left}>
-          <div className={css.thumbnailContainer}>
-            {!topIntersecting && <div className={css.shadow} data-type="top" />}
-            <div ref={topRef} />
-            {project.map((item, index) => {
-              const { id, prefix, title } = item;
-              return (
-                <button
-                  key={id}
-                  type="button"
-                  className={css.thumbnail}
-                  style={
-                    { '--delay': `${(index + 1) * 100}ms` } as CSSProperties
-                  }
-                  data-active={
-                    (activeItem && activeItem.id === id) || undefined
-                  }
-                  onClick={() => setActiveItem(item)}
-                >
-                  <div className={css.imgContainer}>
-                    <img src={PROJECT_ASSETS[`${prefix}-thumb`]} alt={title} />
-                  </div>
+      {project ? (
+        <div
+          className={css.container}
+          style={{ '--ColH': '440px' } as CSSProperties}
+        >
+          <div className={css.left}>
+            <div className={css.thumbnailContainer}>
+              {!topIntersecting && (
+                <div className={css.shadow} data-type="top" />
+              )}
+              <div ref={topRef} />
+              {project.map((item, index) => {
+                const { id, prefix, title } = item;
+                return (
+                  <button
+                    key={id}
+                    type="button"
+                    className={css.thumbnail}
+                    style={
+                      { '--delay': `${(index + 1) * 100}ms` } as CSSProperties
+                    }
+                    data-active={
+                      (activeItem && activeItem.id === id) || undefined
+                    }
+                    onClick={() => setActiveItem(item)}
+                  >
+                    <div className={css.imgContainer}>
+                      <img
+                        src={PROJECT_ASSETS[`${prefix}-thumb`]}
+                        alt={title}
+                      />
+                    </div>
 
-                  <div className={css.titleContainer}>
-                    <h4>{title}</h4>
-                  </div>
-                </button>
-              );
-            })}
-            {!botIntersecting && <div className={css.shadow} data-type="bot" />}
-            <div ref={botRef} />
+                    <div className={css.titleContainer}>
+                      <h4>{title}</h4>
+                    </div>
+                  </button>
+                );
+              })}
+              {!botIntersecting && (
+                <div className={css.shadow} data-type="bot" />
+              )}
+              <div ref={botRef} />
+            </div>
           </div>
+          {activeItem && <Detail key={activeItem.id} data={activeItem} />}
         </div>
-        {activeItem && <Detail key={activeItem.id} data={activeItem} />}
-      </div>
+      ) : (
+        <NoData />
+      )}
     </div>
   );
 };

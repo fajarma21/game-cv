@@ -1,9 +1,11 @@
 import useGetData from '@/hooks/useGetData';
 import useEducationStore from '@/stores/useEducationStore';
 import type { EducationData } from '@/types';
+import { EDUCATION_IMGS } from '@/constants/education';
+import LoaderIcon from '@/components/LoaderIcon';
+import NoData from '@/components/NoData';
 
 import css from './View.module.scss';
-import { EDUCATION_IMGS } from '@/constants/education';
 
 const Education = () => {
   const education = useEducationStore((state) => state.education);
@@ -17,33 +19,34 @@ const Education = () => {
     skip: !!education,
   });
 
-  if (loading) return 'loading...';
-
-  if (!education) return 'no data';
-  const { name, point, prefix, time, title } = education;
+  if (loading) return <LoaderIcon />;
 
   return (
     <>
       <h2>Education</h2>
-      <div className={css.container}>
-        <img
-          src={EDUCATION_IMGS[prefix]}
-          alt={name}
-          width={150}
-          height={150}
-          className={css.logo}
-        />
+      {education ? (
+        <div className={css.container}>
+          <img
+            src={EDUCATION_IMGS[education.prefix]}
+            alt={education.name}
+            width={150}
+            height={150}
+            className={css.logo}
+          />
 
-        <div className={css.info}>
-          <b className={css.time}>{time}</b>
-          <h3>{name}</h3>
-          <p>
-            <i>{title}</i>
-          </p>
+          <div className={css.info}>
+            <b className={css.time}>{education.time}</b>
+            <h3>{education.name}</h3>
+            <p>
+              <i>{education.title}</i>
+            </p>
 
-          <b>GPA: {point}</b>
+            <b>GPA: {education.point}</b>
+          </div>
         </div>
-      </div>
+      ) : (
+        <NoData />
+      )}
     </>
   );
 };

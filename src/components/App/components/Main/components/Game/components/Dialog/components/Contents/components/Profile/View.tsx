@@ -2,6 +2,8 @@ import useProfileStore from '@/stores/useProfileStore';
 import useGetData from '@/hooks/useGetData';
 import convertFSDate from '@/helpers/convertFSDate';
 import type { ProfileData } from '@/types';
+import LoaderIcon from '@/components/LoaderIcon';
+import NoData from '@/components/NoData';
 
 import Chip from './components/Chip';
 import Picture from './components/Picture';
@@ -19,35 +21,38 @@ const Profile = () => {
     skip: !!profile,
   });
 
-  if (loading) return 'loading...';
-
-  if (!profile) return 'no data';
-  const { dob, name, jobs, skills } = profile;
+  if (loading) return <LoaderIcon />;
 
   return (
     <div className={css.container}>
       <h2>Profile</h2>
-      <Picture />
-      <div>
-        <div className={css.row}>
-          <h3>
-            {name} - {convertFSDate(dob, 'YYYY')}
-          </h3>
-          <div className={css.chipContainer}>
-            {jobs.map((item, index) => (
-              <Chip key={'list ' + index}>{item}</Chip>
-            ))}
+      {profile ? (
+        <>
+          <Picture />
+          <div>
+            <div className={css.row}>
+              <h3>
+                {profile.name} - {convertFSDate(profile.dob, 'YYYY')}
+              </h3>
+              <div className={css.chipContainer}>
+                {profile.jobs.map((item, index) => (
+                  <Chip key={'list ' + index}>{item}</Chip>
+                ))}
+              </div>
+            </div>
+            <div className={css.row}>
+              <h4>Skills</h4>
+              <div className={css.chipContainer}>
+                {profile.skills.map((item, index) => (
+                  <Chip key={'list ' + index}>{item}</Chip>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className={css.row}>
-          <h4>Skills</h4>
-          <div className={css.chipContainer}>
-            {skills.map((item, index) => (
-              <Chip key={'list ' + index}>{item}</Chip>
-            ))}
-          </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <NoData />
+      )}
     </div>
   );
 };
