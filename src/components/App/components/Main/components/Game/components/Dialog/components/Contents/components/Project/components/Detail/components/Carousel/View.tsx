@@ -44,11 +44,12 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
 
   return (
     <div className={css.wrapper}>
-      {!leftIntersecting && isMultiple && (
+      {isMultiple && (
         <button
           type="button"
           className={css.arrowBtn}
           data-pos="left"
+          data-show={!leftIntersecting || undefined}
           onClick={handleClickArrow}
         >
           <FaChevronLeft />
@@ -101,11 +102,12 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
           );
         })}
       </div>
-      {!rightIntersecting && isMultiple && (
+      {isMultiple && (
         <button
           type="button"
           className={css.arrowBtn}
           data-pos="right"
+          data-show={!rightIntersecting || undefined}
           onClick={handleClickArrow}
         >
           <FaChevronRight />
