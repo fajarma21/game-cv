@@ -1,4 +1,4 @@
-import profPic from '@/assets/profile_square_small.png';
+import profPic from '@/assets/profile/profile_square.png';
 
 import css from './View.module.scss';
 
