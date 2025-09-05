@@ -2,6 +2,7 @@
   --foreground: rgba(255, 255, 255, 0.87);
   --background: #242424;
   --accent: #00a082;
+  --hoverColor: var(--accent);
 
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

@@ -1,4 +1,4 @@
-import Nav from './components/Nav';
+import Header from './components/Header';
 
 import css from './View.module.scss';
 import Game from './components/Game';
@@ -7,7 +7,7 @@ import Footer from './components/Footer';
 const Main = () => {
   return (
     <div className={css.container}>
-      <Nav />
+      <Header />
       <div className={css.gameWrapper}>
         <Game />
       </div>
