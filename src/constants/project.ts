@@ -1,4 +1,5 @@
-import cvGame1Img from '@/assets/projects/cv-game-1.png';
+import resume1Img from '@/assets/projects/resume-1.png';
+import resume2Img from '@/assets/projects/resume-2.png';
 import cvcThumb from '@/assets/projects/client-video-converter-thumb.png';
 import cvc1Img from '@/assets/projects/client-video-converter-1.png';
 import cvc2Img from '@/assets/projects/client-video-converter-2.png';
@@ -35,10 +36,9 @@ export const PROJECT_KUARTET = 7;
 export const PROJECT_SP_MOCK = 8;
 
 export const PROJECT_ASSETS = {
-  ['resume-thumb']: cvGame1Img,
-  ['resume-1']: cvGame1Img,
-  ['game-cv-thumb']: cvGame1Img,
-  ['game-cv-1']: cvGame1Img,
+  ['resume-thumb']: resume1Img,
+  ['resume-1']: resume1Img,
+  ['resume-2']: resume2Img,
   ['cvc-thumb']: cvcThumb,
   ['cvc-1']: cvc1Img,
   ['cvc-2']: cvc2Img,

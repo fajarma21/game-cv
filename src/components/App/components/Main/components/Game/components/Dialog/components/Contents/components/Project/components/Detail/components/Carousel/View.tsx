@@ -40,8 +40,6 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
     });
   };
 
-  const itemStyle = { width: isMultiple ? '90%' : '100%' };
-
   return (
     <div className={css.wrapper}>
       {isMultiple && (
@@ -67,7 +65,6 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
                 !index ? leftRef : index === previewLength - 1 ? rightRef : null
               }
               className={css.item}
-              style={itemStyle}
             >
               <video controls poster={PROJECT_ASSETS[`${prefix}-1`]}>
                 <source src={PROJECT_ASSETS[videoKey]} type="video/mp4" />
@@ -93,7 +90,6 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
                   : null
               }
               className={css.item}
-              style={itemStyle}
             >
               <a href={imgUrl} target="_blank">
                 <img src={imgUrl} alt={`${title}-${index}`} width="100%" />

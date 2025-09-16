@@ -16,6 +16,8 @@ export default defineConfig({
       output: {
         manualChunks: (id, { getModuleInfo }) => {
           if (id.includes('node_modules')) {
+            if (id.includes('firebase')) return 'firebase';
+            if (id.includes('kaplay')) return 'kaplay';
             return 'vendor';
           } else {
             const info = getModuleInfo(id);
