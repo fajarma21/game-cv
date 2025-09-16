@@ -1,1 +1,1 @@
-export const CV_URL = 'https://github.com/fajarma21';
+export const CV_URL = 'https://fajarma.com';
