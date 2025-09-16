@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/fajarma-game',
+  base: '/game-cv',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
