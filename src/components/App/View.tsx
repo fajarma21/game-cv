@@ -1,4 +1,4 @@
-import { checkIsMobile } from 'fajarma-package';
+import { checkIsMobile, checkTouchScreen } from 'fajarma-package';
 
 import Main from './components/Main';
 import Mobile from './components/Mobile';
@@ -8,8 +8,9 @@ import Mobile from './components/Mobile';
 
 const App = () => {
   const isMobile = checkIsMobile();
+  const isTouchScreen = checkTouchScreen();
 
-  if (isMobile) return <Mobile />;
+  if (isMobile || isTouchScreen) return <Mobile />;
 
   return <Main />;
 };
