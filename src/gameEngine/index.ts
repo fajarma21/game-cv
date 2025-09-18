@@ -1,18 +1,17 @@
-import dayjs from 'dayjs';
 import { getLS, setLS } from 'fajarma-package';
 import type { GameObj } from 'kaplay';
 import kaplay from 'kaplay';
 
-import { ID_BED, ID_CLOCK, ID_PHOTO } from '@/constants';
-
 import { LS_VISIT } from './index.constants';
 import type { InitGameParams } from './index.types';
 import environmentObj from './modules/environment';
-import itemObj from './modules/item';
 import loadingObj from './modules/loading';
 import playerObj from './modules/player';
 import spritesObj from './modules/sprites';
 import textObj from './modules/text';
+import background from './modules/background';
+import foreground from './modules/foreground';
+import collider from './modules/collider';
 
 const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   let activeItems: GameObj[] = [];
@@ -52,7 +51,9 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     handleAddItem,
     handleRemoveItem,
   });
-  itemObj({ k, parent: top });
+  background({ k, parent: top });
+  foreground({ k, parent: top });
+  collider({ k, parent: top });
 
   k.onLoad(() => {
     let greet = '';
@@ -70,36 +71,14 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   const { greetings, label, description } = textObj({ k, parent: bottom });
 
   k.onKeyPress('space', () => {
-    if (activeItems.length) {
-      const item = activeItems[0];
-      if (!item.isText) {
-        handleAction(item.uniqueId, game);
-        game.paused = true;
-      } else if (item.uniqueId === ID_CLOCK) {
-        description.text = dayjs().format('hh:mm:ss A');
-      } else if (item.uniqueId === ID_BED) {
-        const currentTime = dayjs().hour();
-        let text = '';
-        if (currentTime <= 4) {
-          text = "Why are you still up? Working? Let's continue tomorrow.";
-        } else if (currentTime <= 7) {
-          text =
-            'I just woke up and immediately realized there was another morning person.';
-        } else if (currentTime <= 12) {
-          text = 'Seriously? at this time?';
-        } else if (currentTime <= 14) {
-          text = 'Boss is watching.';
-        } else if (currentTime <= 16) {
-          text = "It's too late to take a nap.";
-        } else if (currentTime <= 20) {
-          text = 'Sleepy yet?';
-        } else if (currentTime <= 23) {
-          text = "I'll sleep after you.";
-        }
-        description.text = text;
-      } else if (item.uniqueId === ID_PHOTO) {
-        description.text = 'My family.';
-      }
+    if (!activeItems.length) return;
+
+    const item = activeItems[0];
+
+    if (item.getText) description.text = item.getText();
+    else {
+      handleAction(item.uniqueId, game);
+      game.paused = true;
     }
   });
 
@@ -141,7 +120,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     }
   });
 
-  // k.debug.inspect = true;
+  k.debug.inspect = true;
 };
 
 export default initGame;

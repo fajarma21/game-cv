@@ -1,15 +1,14 @@
-import achievementSprites from '@/assets/game/achievement_sprites.png';
 import aquarium from '@/assets/game/aquarium.png';
-import bedSprites from '@/assets/game/bed_sprites.png';
+import bed from '@/assets/game/bed.png';
 import carpet from '@/assets/game/carpet.png';
 import catSprites from '@/assets/game/cat_sprites.png';
-import eduSprites from '@/assets/game/edu_sprites.png';
-import expSprites from '@/assets/game/exp_sprites.png';
+import edu from '@/assets/game/edu.png';
+import exp from '@/assets/game/exp.png';
 import fishSprites from '@/assets/game/fish_sprites.png';
-import mirrorSprites from '@/assets/game/mirror_sprites.png';
-import photoSprites from '@/assets/game/photo_sprites.png';
+import mirror from '@/assets/game/mirror.png';
+import photo from '@/assets/game/photo.png';
 import playerSprites from '@/assets/game/player_sprites.png';
-import projectSprites from '@/assets/game/project_sprites.png';
+import project from '@/assets/game/project.png';
 import shelf from '@/assets/game/shelf.png';
 import table from '@/assets/game/table.png';
 import tableBack from '@/assets/game/table_back.png';
@@ -19,7 +18,10 @@ import wallH from '@/assets/game/wall_h.png';
 
 import type { KAPLAYCtx } from 'kaplay';
 
+// TODO: remove white outline img
+
 const sprites = (k: KAPLAYCtx) => {
+  // animated
   k.loadSprite('player', playerSprites, {
     sliceX: 3,
     sliceY: 4,
@@ -34,11 +36,6 @@ const sprites = (k: KAPLAYCtx) => {
       left: { from: 9, to: 11, loop: true },
     },
   });
-  k.loadSprite('wall-h', wallH);
-  k.loadSprite('table', table);
-  k.loadSprite('table-long', tableLong);
-  k.loadSprite('table-back', tableBack);
-  k.loadSprite('shelf', shelf);
   k.loadSprite('tea', teaSprites, {
     sliceX: 4,
     sliceY: 1,
@@ -53,64 +50,6 @@ const sprites = (k: KAPLAYCtx) => {
       idle: { from: 0, to: 11, loop: true, speed: 9 },
     },
   });
-  k.loadSprite('project', projectSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('exp', expSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('achievement', achievementSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('edu', eduSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('mirror', mirrorSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('bed', bedSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('photo', photoSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('carpet', carpet);
-  k.loadSprite('aquarium', aquarium);
   k.loadSprite('cat', catSprites, {
     sliceX: 5,
     sliceY: 3,
@@ -118,6 +57,21 @@ const sprites = (k: KAPLAYCtx) => {
       idle: { from: 0, to: 14, loop: true },
     },
   });
+
+  // static
+  k.loadSprite('wall-h', wallH);
+  k.loadSprite('table', table);
+  k.loadSprite('table-long', tableLong);
+  k.loadSprite('table-back', tableBack);
+  k.loadSprite('shelf', shelf);
+  k.loadSprite('project', project);
+  k.loadSprite('exp', exp);
+  k.loadSprite('edu', edu);
+  k.loadSprite('mirror', mirror);
+  k.loadSprite('bed', bed);
+  k.loadSprite('photo', photo);
+  k.loadSprite('carpet', carpet);
+  k.loadSprite('aquarium', aquarium);
 };
 
 export default sprites;

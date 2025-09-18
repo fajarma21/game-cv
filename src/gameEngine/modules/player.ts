@@ -39,16 +39,10 @@ const player = ({
   ]);
 
   player.onCollide('item', (item) => {
-    if (item.sprites) {
-      item.use(k.sprite(item.sprites, { anim: 'selected' }));
-    } else item.use(k.outline(2, k.WHITE));
     handleAddItem(item);
   });
 
   player.onCollideEnd('item', (item) => {
-    if (item.sprites) {
-      item.use(k.sprite(item.sprites, { anim: 'main' }));
-    } else item.use(k.outline(2));
     handleRemoveItem(item);
   });
 
@@ -85,6 +79,7 @@ const player = ({
     ) {
       player.play('down');
     }
+
     if (
       player.direction.eq(k.vec2(0, 0)) &&
       !player.getCurAnim()?.name.includes('idle')
@@ -94,6 +89,7 @@ const player = ({
 
     player.move(player.direction.scale(player.speed));
 
+    // dynamic z index
     // const items = k.get("item");
     // for (const item of items) {
     //   if (player.pos.y < item.pos.y) item.z = 4;
