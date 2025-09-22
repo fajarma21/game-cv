@@ -96,8 +96,6 @@ const player = ({
     //   else item.z = 1;
     // }
   });
-
-  return { player };
 };
 
 export default player;

@@ -10,3 +10,7 @@ export interface PlayerParams extends BasicParams {
   handleAddItem: (value: GameObj) => void;
   handleRemoveItem: (value: GameObj) => void;
 }
+
+export interface MusicParams extends BasicParams {
+  z: number;
+}

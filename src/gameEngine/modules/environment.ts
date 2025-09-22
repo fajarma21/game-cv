@@ -12,8 +12,8 @@ const environment = (k: KAPLAYCtx) => {
 
   // bottom area
   const bottom = k.add([
-    k.pos(20, top.height + 215),
-    k.rect(k.width() - 40, CANVAS_HEIGHT - 535), // top height + gaps
+    k.pos(20, top.height + 200),
+    k.rect(k.width() - 40, CANVAS_HEIGHT - 520), // top height + gaps
     k.color(k.rgb(251, 189, 145)),
   ]);
 

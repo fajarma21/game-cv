@@ -15,3 +15,5 @@ export const ID_BED = 7;
 export const ID_PHOTO = 8;
 export const ID_CAT = 9;
 export const ID_AQUARIUM = 10;
+export const ID_TV = 11;
+export const ID_MUSIC = 12;

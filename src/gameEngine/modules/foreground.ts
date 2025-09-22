@@ -1,3 +1,4 @@
+import music from './music';
 import type { BasicParams } from './types';
 
 /**
@@ -7,7 +8,20 @@ import type { BasicParams } from './types';
 
 const Z = 4;
 
-const foreground = ({ k, parent }: BasicParams) => {
+const foreground = (params: BasicParams) => {
+  const { k, parent } = params;
+
+  parent.add([
+    k.sprite('table-back'),
+    k.pos(0, 220),
+    k.body({ isStatic: true }),
+    k.area({
+      shape: new k.Rect(k.vec2(3, 50), 74, 30),
+    }),
+    k.z(Z),
+  ]);
+  music({ ...params, z: Z });
+
   parent.add([
     k.sprite('table-back'),
     k.pos(557, 220),
@@ -17,7 +31,7 @@ const foreground = ({ k, parent }: BasicParams) => {
     }),
     k.z(Z),
   ]);
-  parent.add([k.sprite('edu', { anim: 'main' }), k.pos(560, 210), k.z(Z)]);
+  parent.add([k.sprite('edu'), k.pos(560, 210), k.z(Z)]);
 
   parent.add([
     k.sprite('table-back'),

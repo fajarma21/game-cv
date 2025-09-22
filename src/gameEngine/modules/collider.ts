@@ -7,7 +7,7 @@ import {
   ID_PROJECT,
 } from '@/constants';
 
-import { randomText } from '../View.helpers';
+import { getRandomText } from '../View.helpers';
 import { AQURIUM_TEXTS, PHOTO_TEXTS } from '../index.constants';
 
 import type { BasicParams } from './types';
@@ -19,7 +19,8 @@ import type { BasicParams } from './types';
 
 /*
   other collider exist in
-  background.ts: cat, bed
+  background.ts: cat, bed, tv
+  foreground.ts: music
 */
 
 const collider = ({ k, parent }: BasicParams) => {
@@ -31,7 +32,7 @@ const collider = ({ k, parent }: BasicParams) => {
     'item',
     {
       uniqueId: ID_PROJECT,
-      text: 'Projects',
+      label: 'Projects',
     },
   ]);
 
@@ -42,7 +43,7 @@ const collider = ({ k, parent }: BasicParams) => {
     'item',
     {
       uniqueId: ID_EXP,
-      text: 'Experience',
+      label: 'Experience',
     },
   ]);
 
@@ -53,7 +54,7 @@ const collider = ({ k, parent }: BasicParams) => {
     'item',
     {
       uniqueId: ID_MIRROR,
-      text: 'Mirror',
+      label: 'Mirror',
     },
   ]);
 
@@ -64,32 +65,42 @@ const collider = ({ k, parent }: BasicParams) => {
     'item',
     {
       uniqueId: ID_EDU,
-      text: 'Education',
+      label: 'Education',
     },
   ]);
 
   // secondary
-  parent.add([
+  const photo = parent.add([
     k.area({
       shape: new k.Rect(k.vec2(495, 30), 50, 20),
     }),
     'item',
     {
       uniqueId: ID_PHOTO,
-      text: 'Photo',
-      getText: () => randomText(PHOTO_TEXTS),
+      label: 'Photo',
+      prevDesc: '',
+      getAction: () => {
+        const newDesc = getRandomText(PHOTO_TEXTS, photo.prevDesc);
+        photo.prevDesc = newDesc;
+        return { description: newDesc };
+      },
     },
   ]);
 
-  parent.add([
+  const aquarium = parent.add([
     k.area({
       shape: new k.Rect(k.vec2(660, 250), 25, 20),
     }),
     'item',
     {
       uniqueId: ID_AQUARIUM,
-      text: 'Aquarium',
-      getText: () => randomText(AQURIUM_TEXTS),
+      label: 'Aquarium',
+      prevDesc: '',
+      getAction: () => {
+        const newDesc = getRandomText(AQURIUM_TEXTS, aquarium.prevDesc);
+        aquarium.prevDesc = newDesc;
+        return { description: newDesc };
+      },
     },
   ]);
 };

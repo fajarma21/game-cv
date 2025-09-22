@@ -2,16 +2,16 @@ import { getLS, setLS } from 'fajarma-package';
 import type { GameObj } from 'kaplay';
 import kaplay from 'kaplay';
 
-import { LS_VISIT } from './index.constants';
+import { LS_VISIT, SPACE_TEXT } from './index.constants';
 import type { InitGameParams } from './index.types';
 import environmentObj from './modules/environment';
 import loadingObj from './modules/loading';
 import playerObj from './modules/player';
 import spritesObj from './modules/sprites';
 import textObj from './modules/text';
-import background from './modules/background';
-import foreground from './modules/foreground';
-import collider from './modules/collider';
+import backgroundObj from './modules/background';
+import foregroundObj from './modules/foreground';
+import colliderObj from './modules/collider';
 
 const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   let activeItems: GameObj[] = [];
@@ -37,6 +37,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     global: false,
     background: [79, 79, 84],
     texFilter: 'linear',
+    debug: false,
   });
 
   loadingObj(k);
@@ -44,16 +45,20 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
   spritesObj(k);
   const { top, bottom } = environmentObj(k);
   const game = top.add([k.z(4), k.timer()]);
-  const { player } = playerObj({
+  playerObj({
     k,
     game,
     parent: top,
     handleAddItem,
     handleRemoveItem,
   });
-  background({ k, parent: top });
-  foreground({ k, parent: top });
-  collider({ k, parent: top });
+  backgroundObj({ k, parent: top });
+  foregroundObj({ k, parent: top });
+  colliderObj({ k, parent: top });
+  const { greetings, label, description, space } = textObj({
+    k,
+    parent: bottom,
+  });
 
   k.onLoad(() => {
     let greet = '';
@@ -66,17 +71,22 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
       greet + '\nPlease make yourself comfortable.\n<use arrow keys to move>';
   });
 
-  let spaceKey: GameObj;
-
-  const { greetings, label, description } = textObj({ k, parent: bottom });
-
   k.onKeyPress('space', () => {
     if (!activeItems.length) return;
 
+    k.tween(k.vec2(0.8), k.vec2(1), 0.1, (v) => {
+      space.scale = v;
+    });
+
     const item = activeItems[0];
 
-    if (item.getText) description.text = item.getText();
-    else {
+    if (item.getAction) {
+      const data = item.getAction();
+
+      description.text = data.description;
+      label.text = data.label || label.text;
+      space.text = data.space === undefined ? space.text : data.space;
+    } else {
       handleAction(item.uniqueId, game);
       game.paused = true;
     }
@@ -84,43 +94,27 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
 
   k.onUpdate(() => {
     if (activeItems.length) {
-      greetings.text = '';
       const newItem = activeItems[0];
       if (
         !latestItem ||
         (latestItem && latestItem.uniqueId !== newItem.uniqueId)
       ) {
-        label.text = `${newItem.text}`;
-        description.text = '';
+        greetings.text = '';
+        label.text = `${newItem.label}`;
+        description.text = newItem.description || '';
+        space.text = SPACE_TEXT;
+
         latestItem = newItem;
-        if (!spaceKey || (spaceKey && !spaceKey.parent)) {
-          spaceKey = player.add([
-            k.pos(0, -130),
-            k.rect(70, 30, { radius: 4 }),
-            k.anchor('center'),
-            k.color(k.WHITE),
-            k.outline(2, k.rgb(196, 196, 196)),
-            k.animate(),
-          ]);
-          spaceKey.add([
-            k.text('SPACE', { size: 16 }),
-            k.anchor('center'),
-            k.color(k.BLACK),
-          ]);
-          spaceKey.animate('scale', [k.vec2(1), k.vec2(0.8), k.vec2(1)], {
-            duration: 0.5,
-          });
-        }
       }
     } else {
       label.text = '';
       description.text = '';
+      space.text = '';
       latestItem = undefined;
-      if (spaceKey) spaceKey.destroy();
     }
   });
 
-  k.debug.inspect = true;
+  // k.debug.inspect = true;
 };
 
 export default initGame;

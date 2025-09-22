@@ -1,7 +1,13 @@
 import dayjs from 'dayjs';
 
-export const randomText = (arr: string[]) => {
-  return arr[Math.floor(Math.random() * arr.length)];
+export const getRandomText = (arr: string[], prevValue: string) => {
+  const getRandom = () => arr[Math.floor(Math.random() * arr.length)];
+  let random = getRandom();
+  while (random === prevValue) {
+    random = getRandom();
+  }
+
+  return random;
 };
 
 export const getBedText = () => {
