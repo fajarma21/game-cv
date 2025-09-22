@@ -1,25 +1,29 @@
-import achievementSprites from '@/assets/game/achievement_sprites.png';
+import type { KAPLAYCtx } from 'kaplay';
+
 import aquarium from '@/assets/game/aquarium.png';
-import bedSprites from '@/assets/game/bed_sprites.png';
+import bed from '@/assets/game/bed.png';
 import carpet from '@/assets/game/carpet.png';
-import catSprites from '@/assets/game/cat_sprites.png';
-import eduSprites from '@/assets/game/edu_sprites.png';
-import expSprites from '@/assets/game/exp_sprites.png';
-import fishSprites from '@/assets/game/fish_sprites.png';
-import mirrorSprites from '@/assets/game/mirror_sprites.png';
-import photoSprites from '@/assets/game/photo_sprites.png';
-import playerSprites from '@/assets/game/player_sprites.png';
-import projectSprites from '@/assets/game/project_sprites.png';
+import edu from '@/assets/game/edu.png';
+import exp from '@/assets/game/exp.png';
+import mirror from '@/assets/game/mirror.png';
+import photo from '@/assets/game/photo.png';
+import project from '@/assets/game/project.png';
 import shelf from '@/assets/game/shelf.png';
 import table from '@/assets/game/table.png';
 import tableBack from '@/assets/game/table_back.png';
 import tableLong from '@/assets/game/table_long.png';
-import teaSprites from '@/assets/game/tea_sprites.png';
+import tv from '@/assets/game/tv.png';
 import wallH from '@/assets/game/wall_h.png';
 
-import type { KAPLAYCtx } from 'kaplay';
+import catSprites from '@/assets/game/cat_sprites.png';
+import fishSprites from '@/assets/game/fish_sprites.png';
+import musicSprites from '@/assets/game/music_sprites.png';
+import playerSprites from '@/assets/game/player_sprites.png';
+import teaSprites from '@/assets/game/tea_sprites.png';
+import tvContentSprites from '@/assets/game/tv_content_sprites.png';
 
 const sprites = (k: KAPLAYCtx) => {
+  // animated
   k.loadSprite('player', playerSprites, {
     sliceX: 3,
     sliceY: 4,
@@ -34,11 +38,6 @@ const sprites = (k: KAPLAYCtx) => {
       left: { from: 9, to: 11, loop: true },
     },
   });
-  k.loadSprite('wall-h', wallH);
-  k.loadSprite('table', table);
-  k.loadSprite('table-long', tableLong);
-  k.loadSprite('table-back', tableBack);
-  k.loadSprite('shelf', shelf);
   k.loadSprite('tea', teaSprites, {
     sliceX: 4,
     sliceY: 1,
@@ -53,64 +52,6 @@ const sprites = (k: KAPLAYCtx) => {
       idle: { from: 0, to: 11, loop: true, speed: 9 },
     },
   });
-  k.loadSprite('project', projectSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('exp', expSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('achievement', achievementSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('edu', eduSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('mirror', mirrorSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('bed', bedSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('photo', photoSprites, {
-    sliceX: 2,
-    sliceY: 1,
-    anims: {
-      main: 0,
-      selected: 1,
-    },
-  });
-  k.loadSprite('carpet', carpet);
-  k.loadSprite('aquarium', aquarium);
   k.loadSprite('cat', catSprites, {
     sliceX: 5,
     sliceY: 3,
@@ -118,6 +59,39 @@ const sprites = (k: KAPLAYCtx) => {
       idle: { from: 0, to: 14, loop: true },
     },
   });
+  k.loadSprite('music', musicSprites, {
+    sliceX: 3,
+    sliceY: 1,
+    anims: {
+      on: { from: 0, to: 1, loop: true, speed: 2 },
+      off: 2,
+    },
+  });
+  k.loadSprite('tv-content', tvContentSprites, {
+    sliceX: 3,
+    sliceY: 1,
+    anims: {
+      ch1: 0,
+      ch2: 1,
+      ch3: 2,
+    },
+  });
+
+  // static
+  k.loadSprite('aquarium', aquarium);
+  k.loadSprite('bed', bed);
+  k.loadSprite('carpet', carpet);
+  k.loadSprite('edu', edu);
+  k.loadSprite('exp', exp);
+  k.loadSprite('mirror', mirror);
+  k.loadSprite('photo', photo);
+  k.loadSprite('project', project);
+  k.loadSprite('shelf', shelf);
+  k.loadSprite('table', table);
+  k.loadSprite('table-back', tableBack);
+  k.loadSprite('table-long', tableLong);
+  k.loadSprite('tv', tv);
+  k.loadSprite('wall-h', wallH);
 };
 
 export default sprites;

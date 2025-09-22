@@ -1,4 +1,4 @@
-import { GameObj } from "kaplay";
+import type { GameObj } from 'kaplay';
 
 export interface InitGameParams {
   canvas: HTMLCanvasElement;
