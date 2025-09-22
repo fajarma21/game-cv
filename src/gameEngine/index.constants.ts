@@ -24,4 +24,4 @@ export const AQURIUM_TEXTS = [
   'Gold fish, i wish it produces gold',
 ];
 
-export const INIT_MUSIC = false;
+export const INIT_MUSIC = true;
