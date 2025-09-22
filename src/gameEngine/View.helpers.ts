@@ -31,3 +31,7 @@ export const getBedText = () => {
   }
   return text;
 };
+
+export const getMusicState = (state: boolean) => {
+  return state ? 'on' : 'off';
+};
