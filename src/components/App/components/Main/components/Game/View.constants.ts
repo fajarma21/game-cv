@@ -1,1 +1,1 @@
-export const INIT_HEIGTH = 633;
+export const INIT_HEIGHT = 633;

@@ -7,8 +7,8 @@ import { CANVAS_HEIGHT, CANVAS_WIDTH } from '@/constants';
 import initGame from '@/gameEngine';
 
 import Dialog from './components/Dialog';
+import { INIT_HEIGHT } from './View.constants';
 import css from './View.module.scss';
-import { INIT_HEIGTH } from './View.constants';
 
 const Game = () => {
   const isLoaded = useRef(false);
@@ -22,7 +22,7 @@ const Game = () => {
 
   const wrapperHeigth =
     Math.floor((CANVAS_HEIGHT * elementSize.width) / CANVAS_WIDTH) ||
-    INIT_HEIGTH;
+    INIT_HEIGHT;
 
   const handleCloseDialog = () => {
     setDisplay(false);

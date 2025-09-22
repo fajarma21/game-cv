@@ -1,5 +1,9 @@
 import loadable from '@loadable/component';
 
-const GameLoadable = loadable(() => import('./View'));
+import Fallback from './View.fallback';
+
+const GameLoadable = loadable(() => import('./View'), {
+  fallback: <Fallback />,
+});
 
 export default GameLoadable;
