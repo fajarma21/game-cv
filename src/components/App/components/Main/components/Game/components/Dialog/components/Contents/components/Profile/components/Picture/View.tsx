@@ -1,12 +1,11 @@
-import profPic from '@/assets/profile/profile_square.png';
-
 import css from './View.module.scss';
+import type { PhotoProps } from './View.types';
 
-const Picture = () => {
+const Picture = ({ src }: PhotoProps) => {
   return (
     <div className={css.imageWrapper}>
       <img
-        src={profPic}
+        src={src}
         alt="profile pic"
         width={200}
         height={200}

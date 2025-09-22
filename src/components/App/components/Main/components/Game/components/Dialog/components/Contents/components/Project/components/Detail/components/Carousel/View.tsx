@@ -4,9 +4,10 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa6';
 
 import css from './View.module.scss';
 import type { CarouselProps } from './View.types';
-import { PROJECT_ASSETS } from '@/constants/project';
 
-const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
+const Carousel = ({ images, title, videos }: CarouselProps) => {
+  const imageTotal = images.length;
+  const videoTotal = videos.length;
   const isMultiple = imageTotal > 1;
   const previewLength = videoTotal + imageTotal;
 
@@ -54,10 +55,7 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
         </button>
       )}
       <div className={css.carousel} ref={scrollableRef}>
-        {[...Array(videoTotal)].map((_, index) => {
-          const idxName = index + 1;
-          const videoKey =
-            `${prefix}-video-${idxName}` as keyof typeof PROJECT_ASSETS;
+        {videos.map((item, index) => {
           return (
             <div
               key={`video-${index}`}
@@ -66,18 +64,14 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
               }
               className={css.item}
             >
-              <video controls poster={PROJECT_ASSETS[`${prefix}-1`]}>
-                <source src={PROJECT_ASSETS[videoKey]} type="video/mp4" />
+              <video controls poster={images[0]} height={204}>
+                <source src={item} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
           );
         })}
-        {[...Array(imageTotal)].map((_, index) => {
-          const idxName = index + 1;
-          const imgKey = `${prefix}-${idxName}` as keyof typeof PROJECT_ASSETS;
-          const imgUrl = PROJECT_ASSETS[imgKey];
-
+        {images.map((item, index) => {
           const imgIdx = videoTotal + index;
           return (
             <div
@@ -91,8 +85,13 @@ const Carousel = ({ imageTotal, prefix, title, videoTotal }: CarouselProps) => {
               }
               className={css.item}
             >
-              <a href={imgUrl} target="_blank">
-                <img src={imgUrl} alt={`${title}-${index}`} width="100%" />
+              <a href={item} target="_blank">
+                <img
+                  src={item}
+                  alt={`${title}-${index}`}
+                  width="100%"
+                  height={204}
+                />
               </a>
             </div>
           );
