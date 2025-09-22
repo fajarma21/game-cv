@@ -6,19 +6,13 @@ import css from './View.module.scss';
 import type { DetailProps } from './View.types';
 
 const Detail = ({ data }: DetailProps) => {
-  const { desc, imageTotal, prefix, repo, stacks, title, url, videoTotal } =
-    data;
+  const { desc, images, repo, stacks, title, url, videos } = data;
   const stacksList = stacks.map((item) => JSON.parse(item));
 
   return (
     <div className={css.container}>
       <div className={css.inner}>
-        <Carousel
-          prefix={prefix}
-          imageTotal={imageTotal}
-          title={title}
-          videoTotal={videoTotal}
-        />
+        <Carousel images={images} title={title} videos={videos} />
         <div className={css.content}>
           <h3 className={css.title}>{title}</h3>
           <p className={css.description}>{desc}</p>

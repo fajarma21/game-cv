@@ -18,14 +18,16 @@ export interface ProfileData {
   interest: string[];
   jobs: string[];
   name: string;
-  prefix: string;
+  photo: string;
   skills: string[];
 }
+
+type EducationPrefix = 'unj';
 
 export interface EducationData {
   name: string;
   point: number;
-  prefix: 'unj';
+  prefix: EducationPrefix;
   time: string;
   title: string;
   url: string;
@@ -42,24 +44,15 @@ export interface ExperienceData {
   url: string;
 }
 
-type ProjectPrefix =
-  | 'resume'
-  | 'cvc'
-  | 'pokemon'
-  | 'pathfinding'
-  | 'ttt'
-  | 'kuartet'
-  | 'sp-mock';
-
 export interface ProjectData {
-  desktopOnly: boolean;
-  imageTotal: number;
-  repo: string[];
   desc: string;
-  prefix: ProjectPrefix;
-  stacks: string[];
-  title: string;
+  desktopOnly: boolean;
   id: number;
-  videoTotal: number;
+  images: string[];
+  repo: string[];
+  stacks: string[];
+  thumbnail: string;
+  title: string;
   url: string;
+  videos: string[];
 }

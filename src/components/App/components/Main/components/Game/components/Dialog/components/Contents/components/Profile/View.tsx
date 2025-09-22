@@ -28,7 +28,7 @@ const Profile = () => {
       <h2>Profile</h2>
       {profile ? (
         <>
-          <Picture />
+          <Picture src={profile.photo} />
           <div>
             <div className={css.row}>
               <h3>

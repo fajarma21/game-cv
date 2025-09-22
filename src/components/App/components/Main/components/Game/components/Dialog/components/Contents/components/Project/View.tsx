@@ -10,7 +10,6 @@ import Detail from './components/Detail';
 import { HIDE } from './View.constants';
 import css from './View.module.scss';
 import useProjectStore from '@/stores/useProjectStore';
-import { PROJECT_ASSETS } from '@/constants/project';
 
 const Project = () => {
   const [activeItem, setActiveItem] = useState<ProjectData>();
@@ -56,7 +55,7 @@ const Project = () => {
               )}
               <div ref={topRef} />
               {project.map((item, index) => {
-                const { id, prefix, title } = item;
+                const { id, title, thumbnail } = item;
                 return (
                   <button
                     key={id}
@@ -71,10 +70,7 @@ const Project = () => {
                     onClick={() => setActiveItem(item)}
                   >
                     <div className={css.imgContainer}>
-                      <img
-                        src={PROJECT_ASSETS[`${prefix}-thumb`]}
-                        alt={title}
-                      />
+                      <img src={thumbnail} alt={title} />
                     </div>
 
                     <div className={css.titleContainer}>
