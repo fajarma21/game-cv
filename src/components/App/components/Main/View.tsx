@@ -1,10 +1,11 @@
+import { useState } from 'react';
+
 import Header from './components/Header';
 import Game from './components/Game';
 import Footer from './components/Footer';
 import Landing from './components/Landing';
 
 import css from './View.module.scss';
-import { useState } from 'react';
 
 const Main = () => {
   const [play, setPlay] = useState(false);

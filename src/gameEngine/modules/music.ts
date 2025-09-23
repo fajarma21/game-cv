@@ -1,24 +1,24 @@
 import { ID_MUSIC } from '@/constants';
 import bgmAudio from '@/assets/audio/bgm.mp3';
+import setLocalStore from '@/helpers/localStore/setLocalStore';
 
-import { INIT_MUSIC } from '../index.constants';
 import { getMusicState } from '../View.helpers';
 import type { MusicParams } from './types';
 
-const music = ({ k, parent, z }: MusicParams) => {
+const music = ({ k, parent, musicState, z }: MusicParams) => {
   k.loadMusic('bgm', bgmAudio);
 
   const bgm = k.play('bgm', {
     loop: true,
-    paused: !INIT_MUSIC,
+    paused: !musicState,
   });
 
   const music = parent.add([
-    k.sprite('music', { anim: getMusicState(INIT_MUSIC) }),
+    k.sprite('music', { anim: getMusicState(musicState) }),
     k.pos(20, 205),
     k.z(z),
     {
-      isPlayed: INIT_MUSIC,
+      isPlayed: musicState,
     },
   ]);
 
@@ -30,7 +30,7 @@ const music = ({ k, parent, z }: MusicParams) => {
     {
       uniqueId: ID_MUSIC,
       label: `Music`,
-      description: `Turned ${getMusicState(INIT_MUSIC)}`,
+      description: `Turned ${getMusicState(musicState)}`,
       getAction: () => {
         let state;
         if (music.isPlayed) {
@@ -42,6 +42,7 @@ const music = ({ k, parent, z }: MusicParams) => {
         }
         music.use(k.sprite('music', { anim: state }));
         music.isPlayed = !music.isPlayed;
+        setLocalStore({ music: music.isPlayed });
 
         const desc = `Turned ${state}`;
         collider.description = desc;

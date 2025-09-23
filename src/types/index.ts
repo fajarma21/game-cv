@@ -56,3 +56,8 @@ export interface ProjectData {
   url: string;
   videos: string[];
 }
+
+export interface LocalData {
+  first: boolean;
+  music: boolean;
+}

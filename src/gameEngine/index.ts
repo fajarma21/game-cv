@@ -1,8 +1,10 @@
-import { getLS, setLS } from 'fajarma-package';
 import type { GameObj } from 'kaplay';
 import kaplay from 'kaplay';
 
-import { LS_VISIT, SPACE_TEXT } from './index.constants';
+import setLocalStore from '@/helpers/localStore/setLocalStore';
+import getLocalStore from '@/helpers/localStore/getLocalStore';
+
+import { SPACE_TEXT } from './index.constants';
 import type { InitGameParams } from './index.types';
 import environmentObj from './modules/environment';
 import loadingObj from './modules/loading';
@@ -14,9 +16,9 @@ import foregroundObj from './modules/foreground';
 import colliderObj from './modules/collider';
 
 const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
+  const initlocalData = getLocalStore();
   let activeItems: GameObj[] = [];
   let latestItem: GameObj | undefined;
-  const secondVisit = getLS(LS_VISIT);
 
   const handleAddItem = (value: GameObj) => {
     activeItems.unshift(value);
@@ -53,7 +55,11 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     handleRemoveItem,
   });
   backgroundObj({ k, parent: top });
-  foregroundObj({ k, parent: top });
+  foregroundObj({
+    k,
+    parent: top,
+    musicState: initlocalData.music,
+  });
   colliderObj({ k, parent: top });
   const { greetings, label, description, space } = textObj({
     k,
@@ -62,11 +68,11 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
 
   k.onLoad(() => {
     let greet = '';
-    if (secondVisit) greet = 'Welcome back!';
-    else {
-      setLS(LS_VISIT, true);
+    if (initlocalData.first) {
       greet = 'Welcome to my house!';
-    }
+      setLocalStore({ first: false }, initlocalData);
+    } else greet = 'Welcome back!';
+
     greetings.text =
       greet + '\nPlease make yourself comfortable.\n<use arrow keys to move>';
   });

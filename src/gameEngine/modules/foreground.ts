@@ -1,5 +1,5 @@
 import music from './music';
-import type { BasicParams } from './types';
+import type { ForegroundParams } from './types';
 
 /**
  *
@@ -8,7 +8,7 @@ import type { BasicParams } from './types';
 
 const Z = 4;
 
-const foreground = (params: BasicParams) => {
+const foreground = (params: ForegroundParams) => {
   const { k, parent } = params;
 
   parent.add([

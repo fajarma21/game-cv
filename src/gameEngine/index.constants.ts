@@ -1,5 +1,3 @@
-export const LS_VISIT = 'fajarma_game_visit';
-
 export const SPACE_TEXT = '[ Space ]';
 
 export const SPEED = 320;

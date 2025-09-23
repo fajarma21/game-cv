@@ -23,28 +23,29 @@
   position: absolute;
   z-index: 1;
   left: calc(50% - 75px);
-  top: -110px;
-  padding: 16px;
-  border-radius: 50% 50% 0 0;
-  background-color: #373737;
+  top: -70px;
   transition: all 250ms;
 }
 
 .startBtn {
   all: unset;
+  box-sizing: border-box;
+  display: block;
   position: relative;
   z-index: 2;
-  box-sizing: border-box;
   cursor: pointer;
   font-size: 1.5rem;
   width: 150px;
   text-align: center;
   padding: 16px 0;
-  border-radius: 16px;
+  border-radius: 16px 16px 8px 8px;
+  border-bottom: 5px solid #2b2b2b;
   background-color: #373737;
   transition: all 250ms;
 
   &:hover {
+    color: gold;
+    font-size: 1.6rem;
     + img {
       top: -125px;
     }
