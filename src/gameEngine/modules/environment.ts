@@ -26,7 +26,6 @@ const environment = (k: KAPLAYCtx) => {
     k.body({ isStatic: true }),
     k.color(k.rgb(240, 163, 104)),
     k.z(10),
-    'wall',
   ]);
   top.add([
     k.sprite('wall-h', {
@@ -37,7 +36,6 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
-    'wall',
   ]);
   // right
   top.add([
@@ -47,7 +45,6 @@ const environment = (k: KAPLAYCtx) => {
     k.body({ isStatic: true }),
     k.color(k.rgb(240, 163, 104)),
     k.z(10),
-    'wall',
   ]);
   top.add([
     k.sprite('wall-h', {
@@ -58,7 +55,6 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.z(10),
-    'wall',
   ]);
   // top
   top.add([
@@ -70,7 +66,6 @@ const environment = (k: KAPLAYCtx) => {
     k.pos(-5, -151),
     k.area(),
     k.body({ isStatic: true }),
-    'wall',
   ]);
   //bottom
   top.add([
@@ -79,7 +74,6 @@ const environment = (k: KAPLAYCtx) => {
     k.area(),
     k.body({ isStatic: true }),
     k.color(k.rgb(207, 162, 84)),
-    'wall',
   ]);
 
   return {

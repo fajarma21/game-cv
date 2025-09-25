@@ -15,7 +15,4 @@ export interface ForegroundParams extends BasicParams {
   musicState: LocalData['music'];
 }
 
-export interface MusicParams extends BasicParams {
-  musicState: LocalData['music'];
-  z: number;
-}
+export type MusicParams = ForegroundParams;

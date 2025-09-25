@@ -11,7 +11,7 @@ const Z = 4;
 const foreground = (params: ForegroundParams) => {
   const { k, parent } = params;
 
-  parent.add([
+  const musciTable = parent.add([
     k.sprite('table-back'),
     k.pos(0, 220),
     k.body({ isStatic: true }),
@@ -20,9 +20,9 @@ const foreground = (params: ForegroundParams) => {
     }),
     k.z(Z),
   ]);
-  music({ ...params, z: Z });
+  music({ ...params, parent: musciTable });
 
-  parent.add([
+  const eduTable = parent.add([
     k.sprite('table-back'),
     k.pos(557, 220),
     k.body({ isStatic: true }),
@@ -31,9 +31,14 @@ const foreground = (params: ForegroundParams) => {
     }),
     k.z(Z),
   ]);
-  parent.add([k.sprite('edu'), k.pos(560, 210), k.z(Z)]);
+  eduTable.onDraw(() => {
+    k.drawSprite({
+      sprite: 'edu',
+      pos: k.vec2(3, -10),
+    });
+  });
 
-  parent.add([
+  const aquariumTable = parent.add([
     k.sprite('table-back'),
     k.pos(631, 220),
     k.body({ isStatic: true }),
@@ -42,8 +47,13 @@ const foreground = (params: ForegroundParams) => {
     }),
     k.z(Z),
   ]);
-  parent.add([k.sprite('aquarium'), k.pos(637, 200), k.z(Z)]);
-  parent.add([k.sprite('fish', { anim: 'idle' }), k.pos(644, 215), k.z(Z)]);
+  aquariumTable.onDraw(() => {
+    k.drawSprite({
+      sprite: 'aquarium',
+      pos: k.vec2(4, -20),
+    });
+  });
+  aquariumTable.add([k.sprite('fish', { anim: 'idle' }), k.pos(13, 0)]);
 };
 
 export default foreground;

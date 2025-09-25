@@ -1,6 +1,7 @@
 import type { GameObj } from 'kaplay';
 import kaplay from 'kaplay';
 
+import { IS_DEVELOPMENT } from '@/constants/env';
 import setLocalStore from '@/helpers/localStore/setLocalStore';
 import getLocalStore from '@/helpers/localStore/getLocalStore';
 
@@ -39,7 +40,7 @@ const initGame = ({ width, height, canvas, handleAction }: InitGameParams) => {
     global: false,
     background: [79, 79, 84],
     texFilter: 'linear',
-    debug: false,
+    debug: IS_DEVELOPMENT,
   });
 
   loadingObj(k);

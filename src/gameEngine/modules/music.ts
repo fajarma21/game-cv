@@ -5,7 +5,7 @@ import setLocalStore from '@/helpers/localStore/setLocalStore';
 import { getMusicState } from '../View.helpers';
 import type { MusicParams } from './types';
 
-const music = ({ k, parent, musicState, z }: MusicParams) => {
+const music = ({ k, parent, musicState }: MusicParams) => {
   k.loadMusic('bgm', bgmAudio);
 
   const bgm = k.play('bgm', {
@@ -15,8 +15,7 @@ const music = ({ k, parent, musicState, z }: MusicParams) => {
 
   const music = parent.add([
     k.sprite('music', { anim: getMusicState(musicState) }),
-    k.pos(20, 205),
-    k.z(z),
+    k.pos(20, -15),
     {
       isPlayed: musicState,
     },
@@ -24,7 +23,7 @@ const music = ({ k, parent, musicState, z }: MusicParams) => {
 
   const collider = parent.add([
     k.area({
-      shape: new k.Rect(k.vec2(28, 250), 25, 20),
+      shape: new k.Rect(k.vec2(28, 30), 25, 20),
     }),
     'item',
     {

@@ -15,15 +15,20 @@ import type { BasicParams } from './types';
 const background = (params: BasicParams) => {
   const { k, parent } = params;
 
-  parent.add([
+  const projectTable = parent.add([
     k.sprite('table-long'),
     k.anchor('botleft'),
     k.pos(0, 30),
     k.body({ isStatic: true }),
     k.area(),
   ]);
-  parent.add([k.sprite('project'), k.pos(5, -105)]);
-  parent.add([k.sprite('tea', { anim: 'idle' }), k.pos(33, -58)]);
+  projectTable.onDraw(() => {
+    k.drawSprite({
+      sprite: 'project',
+      pos: k.vec2(5, -135),
+    });
+  });
+  projectTable.add([k.sprite('tea', { anim: 'idle' }), k.pos(33, -88)]);
 
   parent.add([k.sprite('exp'), k.pos(125, -100)]);
 
@@ -32,14 +37,19 @@ const background = (params: BasicParams) => {
 
   parent.add([k.sprite('mirror'), k.pos(425, -100)]);
 
-  parent.add([
+  const photoShelf = parent.add([
     k.sprite('shelf'),
     k.anchor('botleft'),
     k.pos(480, 30),
     k.body({ isStatic: true }),
     k.area(),
   ]);
-  parent.add([k.sprite('photo'), k.pos(485, -65)]);
+  photoShelf.onDraw(() => {
+    k.drawSprite({
+      sprite: 'photo',
+      pos: k.vec2(5, -95),
+    });
+  });
 
   parent.add([
     k.sprite('bed'),
@@ -55,7 +65,12 @@ const background = (params: BasicParams) => {
     },
   ]);
 
-  parent.add([k.sprite('carpet'), k.pos(160, 60)]);
+  parent.onDraw(() => {
+    k.drawSprite({
+      sprite: 'carpet',
+      pos: k.vec2(160, 60),
+    });
+  });
 
   const cat = parent.add([
     k.sprite('cat', { anim: 'idle' }),
