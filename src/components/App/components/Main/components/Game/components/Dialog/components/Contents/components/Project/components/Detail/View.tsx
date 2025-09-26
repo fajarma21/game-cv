@@ -61,7 +61,7 @@ const Detail = ({ data }: DetailProps) => {
         >
           <div className={css.text}>
             {url ? <FaLink /> : <FaLinkSlash />}
-            <b>{url || 'Not deployef yet'}</b>
+            <b>{url || 'Not deployed yet'}</b>
           </div>
         </a>
       </div>
