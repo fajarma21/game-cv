@@ -28,6 +28,7 @@ const Project = () => {
 
   const { loading } = useGetData<ProjectData>({
     collectionName: 'project',
+    orderBy: ['order', 'asc'],
     onCompleted: (data) => {
       updateProject(data.filter((item) => !HIDE.includes(item.id)));
     },
