@@ -6,12 +6,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
+  gap: 16px;
   height: 633px;
+  padding: 36px 0;
   background-color: #4f4f54;
   border-top: 2px solid #8a8a8a;
   border-bottom: 2px solid #484848;
-  background-image: url('/src/assets/bg_pattern.png');
+  background: #4f4f54 url('/src/assets/front-page.png') 20px 20px / 728px 593px
+    no-repeat;
 }
 
 .inner {
@@ -24,7 +27,7 @@
   z-index: 1;
   left: calc(50% - 75px);
   top: -70px;
-  transition: all 250ms;
+  transition: all 1000ms;
 }
 
 .startBtn {
@@ -44,7 +47,6 @@
   transition: all 250ms;
 
   &:hover {
-    color: gold;
     font-size: 1.6rem;
     + img {
       top: -125px;
@@ -53,8 +55,6 @@
 }
 
 .warning {
-  position: absolute;
-  bottom: 36px;
   margin: 0;
   text-align: center;
   font-size: 0.8rem;
