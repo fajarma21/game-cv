@@ -4,13 +4,14 @@ import dayjs from 'dayjs';
 import css from './View.module.scss';
 
 const Clock = () => {
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<string>();
   const frameRef = useRef<number>(null);
 
   const updateClock = useCallback(() => {
-    setTime(new Date());
+    const t = dayjs().format('HH:mm');
+    if (t !== time) setTime(t);
     frameRef.current = requestAnimationFrame(updateClock);
-  }, []);
+  }, [time]);
 
   useEffect(() => {
     frameRef.current = requestAnimationFrame(updateClock);
@@ -21,7 +22,7 @@ const Clock = () => {
 
   return (
     <div className={css.container}>
-      <div className={css.clock}>{dayjs(time).format('HH:mm')}</div>
+      <div className={css.clock}>{time}</div>
       <p className={css.date}>{dayjs().format('ddd, DD MMMM YYYY')}</p>
     </div>
   );
