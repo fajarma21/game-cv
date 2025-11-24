@@ -1,4 +1,3 @@
-import fmIcon from '@/assets/fajarma_icon_big.png';
 import getLocalStore from '@/helpers/localStore/getLocalStore';
 
 import Clock from './components/Clock';
@@ -11,18 +10,9 @@ const Landing = ({ onClick }: LandingProps) => {
   return (
     <div className={css.wrapper}>
       <div className={css.container}>
-        <div className={css.inner}>
-          <button type="button" className={css.startBtn} onClick={onClick}>
-            <b>Enter</b>
-          </button>
-          <img
-            src={fmIcon}
-            alt="fajarma icon"
-            width={150}
-            height={150}
-            className={css.img}
-          />
-        </div>
+        <button type="button" className={css.startBtn} onClick={onClick}>
+          <b>Enter</b>
+        </button>
         {localData.music ? (
           <p className={css.warning}>
             Music will play after you click Enter button.
