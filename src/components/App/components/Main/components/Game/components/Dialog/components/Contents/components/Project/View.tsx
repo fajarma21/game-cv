@@ -1,18 +1,17 @@
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useState } from 'react';
 import { useIntersect } from 'fajarma-react-lib';
 
-import useGetData from '@/hooks/useGetData';
-import type { ProjectData } from '@/types';
 import LoaderIcon from '@/components/LoaderIcon';
 import NoData from '@/components/NoData';
+import useGetData from '@/hooks/useGetData';
+import useProjectStore from '@/stores/useProjectStore';
+import type { ProjectData } from '@/types';
 
-import Detail from './components/Detail';
+import Card from './components/Card';
 import { HIDE } from './View.constants';
 import css from './View.module.scss';
-import useProjectStore from '@/stores/useProjectStore';
 
 const Project = () => {
-  const [activeItem, setActiveItem] = useState<ProjectData>();
   const [topIntersecting, setTopIntersecting] = useState(false);
   const [botIntersecting, setBotIntersecting] = useState(false);
 
@@ -35,62 +34,42 @@ const Project = () => {
     skip: !!project,
   });
 
-  useEffect(() => {
-    if (project) setActiveItem(project[0]);
-  }, [project]);
-
   if (loading) return <LoaderIcon />;
 
   return (
-    <div>
+    <div className={css.container}>
       <h2>Project</h2>
-      {project ? (
-        <div
-          className={css.container}
-          style={{ '--ColH': '440px' } as CSSProperties}
-        >
-          <div className={css.left}>
-            <div className={css.thumbnailContainer}>
-              {!topIntersecting && (
-                <div className={css.shadow} data-type="top" />
+      <div className={css.wrapper}>
+        {project ? (
+          <>
+            <div
+              className={css.shadow}
+              data-type="top"
+              data-visible={!topIntersecting || undefined}
+            />
+            <div className={css.scroll}>
+              <div ref={topRef} className={css.indicator} />
+              <div className={css.list}>
+                {project.map((item) => (
+                  <Card key={item.title} data={item} isMobile={false} />
+                ))}
+              </div>
+              {!!project.length && (
+                <p className={css.end}>--- There will be more later ---</p>
               )}
-              <div ref={topRef} />
-              {project.map((item, index) => {
-                const { id, title, thumbnail } = item;
-                return (
-                  <button
-                    key={id}
-                    type="button"
-                    className={css.thumbnail}
-                    style={
-                      { '--delay': `${(index + 1) * 100}ms` } as CSSProperties
-                    }
-                    data-active={
-                      (activeItem && activeItem.id === id) || undefined
-                    }
-                    onClick={() => setActiveItem(item)}
-                  >
-                    <div className={css.imgContainer}>
-                      <img src={thumbnail} alt={title} />
-                    </div>
-
-                    <div className={css.titleContainer}>
-                      <h4>{title}</h4>
-                    </div>
-                  </button>
-                );
-              })}
-              {!botIntersecting && (
-                <div className={css.shadow} data-type="bot" />
-              )}
-              <div ref={botRef} />
+              <div ref={botRef} className={css.indicator} />
             </div>
-          </div>
-          {activeItem && <Detail key={activeItem.id} data={activeItem} />}
-        </div>
-      ) : (
-        <NoData />
-      )}
+
+            <div
+              className={css.shadow}
+              data-type="bot"
+              data-visible={!botIntersecting || undefined}
+            />
+          </>
+        ) : (
+          <NoData />
+        )}
+      </div>
     </div>
   );
 };

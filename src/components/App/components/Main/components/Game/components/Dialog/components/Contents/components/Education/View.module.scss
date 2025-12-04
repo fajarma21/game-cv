@@ -19,9 +19,14 @@
 .info {
   width: 240px;
   .time {
-    color: #aaaaaa;
+    color: var(--dim);
   }
   h3 {
-    color: gold;
+    color: var(--decor);
+  }
+
+  .scala {
+    color: #999999;
+    font-size: 0.8rem;
   }
 }
