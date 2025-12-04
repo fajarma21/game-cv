@@ -1,0 +1,16 @@
+.cardModifier {
+  --color-card-border: var(--gray);
+  --color-card-background: var(--gray);
+  --color-card-desc: var(--dim);
+  --color-card-expand-icon: #999999;
+  --color-card-link: var(--accent);
+  --color-card-button-text: var(--decor);
+  --color-card-button-border: var(--decor);
+  --color-card-background: var(--gray);
+  --color-card-button-background-hover: var(--decor);
+  --color-card-button-text-hover: var(--gray);
+
+  flex: none;
+  width: 80%;
+  max-width: 300px;
+}

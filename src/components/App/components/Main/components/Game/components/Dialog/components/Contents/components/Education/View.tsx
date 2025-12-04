@@ -41,7 +41,9 @@ const Education = () => {
               <i>{education.title}</i>
             </p>
 
-            <b>GPA: {education.point}</b>
+            <b>
+              GPA: {education.point} <span className={css.scala}>/ 4.0</span>
+            </b>
           </div>
         </div>
       ) : (
