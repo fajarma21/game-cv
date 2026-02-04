@@ -5,3 +5,10 @@
   align-items: center;
   gap: 12px;
 }
+
+.contacts {
+  :global(.fm-tooltip) {
+    right: 0;
+    top: calc(100% + 8px);
+  }
+}
