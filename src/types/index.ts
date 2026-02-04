@@ -38,7 +38,9 @@ export interface ExperienceData {
   company: string;
   desc: string;
   end?: FirebaseDate;
-  jobs: string[];
+  jobDesc: string[];
+  jobDescStacks: string;
+  jobDescTools: string;
   title: string;
   start: FirebaseDate;
   url: string;
