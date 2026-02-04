@@ -14,7 +14,7 @@ const Experience = () => {
 
   const experience = useExperienceStore((state) => state.experience);
   const updateExperience = useExperienceStore(
-    (state) => state.updateExperience
+    (state) => state.updateExperience,
   );
 
   const { loading } = useGetData<ExperienceData>({
@@ -43,47 +43,67 @@ const Experience = () => {
       <h2>Experience</h2>
       {experience ? (
         <div>
-          {experience.map(({ id, company, jobs, start, end, title }, index) => (
-            <div
-              key={`exp-${index}`}
-              style={{ '--delay': `${(index + 1) * 100}ms` } as CSSProperties}
-              className={css.container}
-              data-active={opened.includes(id) || undefined}
-            >
-              <div className={css.row}>
-                <div className={css.left}>
-                  <button
-                    type="button"
-                    className={css.dot}
-                    onClick={() => toggleOpen(id)}
-                  />
+          {experience.map(
+            (
+              {
+                id,
+                company,
+                jobDesc,
+                jobDescStacks,
+                jobDescTools,
+                start,
+                end,
+                title,
+              },
+              index,
+            ) => (
+              <div
+                key={`exp-${index}`}
+                style={{ '--delay': `${(index + 1) * 100}ms` } as CSSProperties}
+                className={css.container}
+                data-active={opened.includes(id) || undefined}
+              >
+                <div className={css.row}>
+                  <div className={css.left}>
+                    <button
+                      type="button"
+                      className={css.dot}
+                      onClick={() => toggleOpen(id)}
+                    />
+                  </div>
+                  <div className={css.right}>
+                    <button
+                      type="button"
+                      className={css.headBtn}
+                      onClick={() => toggleOpen(id)}
+                    >
+                      <p className={css.date}>
+                        {convertFSDate(start)} - {convertFSDate(end)}
+                      </p>
+                      <h3>{company}</h3>
+                      <p className={css.title}>{title}</p>
+                    </button>
+                  </div>
                 </div>
-                <div className={css.right}>
-                  <button
-                    type="button"
-                    className={css.headBtn}
-                    onClick={() => toggleOpen(id)}
-                  >
-                    <p className={css.date}>
-                      {convertFSDate(start)} - {convertFSDate(end)}
-                    </p>
-                    <h3>{company}</h3>
-                    <p className={css.title}>{title}</p>
-                  </button>
+                <div className={css.row}>
+                  <div className={css.left} />
+                  <div className={css.right}>
+                    <ul className={css.desc}>
+                      {jobDesc.map((item, index) => (
+                        <li key={`job-${index}`}>{item}</li>
+                      ))}
+                      <li>
+                        <span>Stacks:</span> <em>{jobDescStacks}</em>
+                      </li>
+                      <li>
+                        <span>Tools:</span> <em>{jobDescTools}</em>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-              <div className={css.row}>
-                <div className={css.left} />
-                <div className={css.right}>
-                  <ul className={css.desc}>
-                    {jobs.map((item, index) => (
-                      <li key={`job-${index}`}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          ))}
+            ),
+          )}
         </div>
       ) : (
         <NoData />

@@ -137,6 +137,10 @@
         max-height: 0;
         padding: 0 20px;
         transition: all 500ms;
+
+        li span {
+          opacity: 0.5;
+        }
       }
     }
 
