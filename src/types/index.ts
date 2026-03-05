@@ -13,6 +13,12 @@ export interface BlockerData {
   height: number;
 }
 
+export interface ContactData {
+  cvUrl: string;
+  email: string;
+  linkedinUrl: string;
+}
+
 export interface ProfileData {
   dob: FirebaseDate;
   interest: string[];
