@@ -19,17 +19,19 @@ const Project = () => {
   const updateProject = useProjectStore((state) => state.updateProject);
 
   const { ref: topRef } = useIntersect<HTMLDivElement>((value) =>
-    setTopIntersecting(value)
+    setTopIntersecting(value),
   );
   const { ref: botRef } = useIntersect<HTMLDivElement>((value) =>
-    setBotIntersecting(value)
+    setBotIntersecting(value),
   );
 
   const { loading } = useGetData<ProjectData>({
     collectionName: 'project',
     orderBy: ['order', 'asc'],
     onCompleted: (data) => {
-      updateProject(data.filter((item) => !HIDE.includes(item.id)));
+      updateProject(
+        data.filter((item) => !HIDE.includes(item.id) && item.show),
+      );
     },
     skip: !!project,
   });
