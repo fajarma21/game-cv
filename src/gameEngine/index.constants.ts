@@ -19,7 +19,8 @@ export const CAT_TEXTS = [
 export const AQURIUM_TEXTS = [
   'Blup blup blup...',
   'Looks like it needs a friend',
-  'Gold fish, i wish it produces gold',
+  'Gold fish, i wish it produces real gold',
+  'Be a gold fish',
 ];
 
 export const INIT_MUSIC = true;

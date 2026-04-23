@@ -60,7 +60,7 @@ const background = (params: BasicParams) => {
     'item',
     {
       uniqueId: ID_BED,
-      label: 'Bed',
+      label: 'Sleep',
       getAction: () => ({ description: getBedText(), space: '' }),
     },
   ]);

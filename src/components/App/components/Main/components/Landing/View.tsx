@@ -15,15 +15,17 @@ const Landing = ({ onClick }: LandingProps) => {
         </button>
         {localData.music ? (
           <p className={css.warning}>
-            Music will play after you click Enter button.
+            <b>Music</b> is turned <b>on</b>
             <br />
-            You can turn off the music later.
+            and will play after you click Enter button.
+            <br />
+            You can turn off the music inside.
           </p>
         ) : (
           <p className={css.warning}>
-            Music is turned off.
+            <b>Music</b> is turned <b>off</b>.
             <br />
-            You can turn on the music later.
+            You can turn on the music inside.
           </p>
         )}
         <Clock />
