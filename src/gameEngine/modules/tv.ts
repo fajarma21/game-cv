@@ -54,10 +54,8 @@ const tv = ({ k, parent }: BasicParams) => {
           ]);
 
           state = CHANNEL_TEXTS[randomChannel - 1];
-          // state = 'Turned on';
         }
         const desc = String(state);
-        // const desc = `Turned ${state}`;
         collider.description = desc;
 
         return {
