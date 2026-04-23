@@ -68,12 +68,14 @@ const sprites = (k: KAPLAYCtx) => {
     },
   });
   k.loadSprite('tv-content', tvContentSprites, {
-    sliceX: 3,
+    sliceX: 5,
     sliceY: 1,
     anims: {
       ch1: 0,
       ch2: 1,
       ch3: 2,
+      ch4: 3,
+      ch5: 4,
     },
   });
 

@@ -14,12 +14,14 @@ export const getBedText = () => {
   const currentTime = dayjs().hour();
   let text = '';
   if (currentTime <= 4) {
-    text = "Why are you still up? Working?\nLet's continue tomorrow.";
+    text = "Why are you still up?\nLet's continue tomorrow.";
   } else if (currentTime <= 7) {
     text =
       'I just woke up and immediately realized there was another morning person.';
   } else if (currentTime <= 12) {
     text = 'Seriously? at this time?';
+  } else if (currentTime <= 13) {
+    text = 'Better take your lunch break first.';
   } else if (currentTime <= 14) {
     text = 'Boss is watching.';
   } else if (currentTime <= 16) {
