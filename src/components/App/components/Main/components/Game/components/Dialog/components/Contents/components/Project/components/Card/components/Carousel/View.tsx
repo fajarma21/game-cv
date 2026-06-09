@@ -19,11 +19,11 @@ const Carousel = ({ images, title, videos }: CarouselProps) => {
 
   const { ref: leftRef } = useIntersect<HTMLDivElement>(
     (value) => setLeftIntersecting(value),
-    intersectOpt
+    intersectOpt,
   );
   const { ref: rightRef } = useIntersect<HTMLDivElement>(
     (value) => setRightIntersecting(value),
-    intersectOpt
+    intersectOpt,
   );
 
   const handleClickArrow = (e: MouseEvent) => {
@@ -80,19 +80,17 @@ const Carousel = ({ images, title, videos }: CarouselProps) => {
                 !imgIdx
                   ? leftRef
                   : imgIdx === previewLength - 1
-                  ? rightRef
-                  : null
+                    ? rightRef
+                    : null
               }
               className={css.item}
             >
-              <a href={item} target="_blank">
-                <img
-                  src={item}
-                  alt={`${title}-${index}`}
-                  width="100%"
-                  height={204}
-                />
-              </a>
+              <img
+                src={item}
+                alt={`${title}-${index}`}
+                width="100%"
+                height={204}
+              />
             </div>
           );
         })}
