@@ -1,14 +1,7 @@
 import { ID_TV } from '@/constants';
-import type { BasicParams } from './types';
+import { CHANNEL_TEXTS } from '@/constants/tv';
 
-const TOTAL_CHANNEL = 5;
-const CHANNEL_TEXTS = [
-  '"Trust means absolutely zero inside these walls"',
-  '"I am the one who knocks."',
-  '"It\'s never lupus."',
-  '"No God. The only man in the sky is me."',
-  '"You\'ll float too."',
-];
+import type { BasicParams } from './types';
 
 const tv = ({ k, parent }: BasicParams) => {
   const tv = parent.add([
@@ -39,7 +32,8 @@ const tv = ({ k, parent }: BasicParams) => {
           tv.children[0].destroy();
           state = 'Turned off';
         } else {
-          const getRandom = () => Math.ceil(Math.random() * TOTAL_CHANNEL);
+          const getRandom = () =>
+            Math.ceil(Math.random() * CHANNEL_TEXTS.length);
           let randomChannel = getRandom();
           while (randomChannel === tv.prevChannel) {
             randomChannel = getRandom();
@@ -53,7 +47,7 @@ const tv = ({ k, parent }: BasicParams) => {
             k.pos(13, -127),
           ]);
 
-          state = CHANNEL_TEXTS[randomChannel - 1];
+          state = `"${CHANNEL_TEXTS[randomChannel - 1]}"`;
         }
         const desc = String(state);
         collider.description = desc;

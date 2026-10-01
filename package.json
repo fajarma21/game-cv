@@ -14,7 +14,11 @@
     "@types/loadable__component": "^5.13.9",
     "dayjs": "^1.11.13",
     "fajarma-package": "^1.2.0",
+<<<<<<< HEAD
     "fajarma-react-lib": "^1.6.3",
+=======
+    "fajarma-react-lib": "^1.6.4",
+>>>>>>> 62de2a2 (feat(tv): add some tv shows)
     "firebase": "^12.2.1",
     "kaplay": "^3001.0.9",
     "react": "^19.0.0",

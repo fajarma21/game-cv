@@ -22,6 +22,8 @@ import playerSprites from '@/assets/game/player_sprites.png';
 import teaSprites from '@/assets/game/tea_sprites.png';
 import tvContentSprites from '@/assets/game/tv_content_sprites.png';
 
+import { CHANNEL_TEXTS } from '@/constants/tv';
+
 const sprites = (k: KAPLAYCtx) => {
   // animated
   k.loadSprite('player', playerSprites, {
@@ -68,15 +70,17 @@ const sprites = (k: KAPLAYCtx) => {
     },
   });
   k.loadSprite('tv-content', tvContentSprites, {
-    sliceX: 5,
+    sliceX: CHANNEL_TEXTS.length,
     sliceY: 1,
-    anims: {
-      ch1: 0,
-      ch2: 1,
-      ch3: 2,
-      ch4: 3,
-      ch5: 4,
-    },
+    anims: CHANNEL_TEXTS.reduce(
+      (prev, _, index) => {
+        const newChannel = {
+          [`ch${index + 1}`]: index,
+        };
+        return { ...prev, ...newChannel };
+      },
+      { ch1: 0 },
+    ),
   });
 
   // static
